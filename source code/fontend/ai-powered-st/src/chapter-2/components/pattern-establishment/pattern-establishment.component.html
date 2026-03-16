@@ -1,0 +1,283 @@
+<div class="container">
+  <h2>Pattern Establishment System</h2>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="state.isLoading" class="loading">
+    Loading...
+  </div>
+
+  <!-- Error Display -->
+  <div *ngIf="state.error" class="error">
+    <h4>Error: {{ state.error.failureType }}</h4>
+    <p><strong>Root Cause:</strong> {{ state.error.rootCause }}</p>
+    <p><small>Correlation ID: {{ state.error.correlationId }}</small></p>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="state.successMessage" class="success">
+    ✅ {{ state.successMessage }}
+  </div>
+
+  <hr>
+
+  <!-- 1. Establish Pattern Section -->
+  <div class="section">
+    <h3>1. Establish New Testing Pattern</h3>
+    
+    <form [formGroup]="establishForm" (ngSubmit)="establishPattern()" class="form">
+      <div class="form-group">
+        <label>Testing Area:</label>
+        <input formControlName="area" placeholder="e.g., API Testing">
+        <div *ngIf="establishForm.get('area')?.invalid && establishForm.get('area')?.touched" class="error-text">
+          Area is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Consistency:</label>
+        <select formControlName="desiredConsistency">
+          <option *ngFor="let opt of consistencyOptions" [value]="opt">{{ opt }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Automation Level:</label>
+        <select formControlName="automationLevel">
+          <option *ngFor="let opt of automationOptions" [value]="opt">{{ opt }}</option>
+        </select>
+      </div>
+
+      <!-- Test Examples -->
+      <div formArrayName="examples" class="examples-section">
+        <h4>Test Examples</h4>
+        <div *ngFor="let example of examples.controls; let i = index" [formGroupName]="i" class="example-item">
+          <div class="form-group">
+            <label>Test Name:</label>
+            <input formControlName="testName" placeholder="Test name">
+          </div>
+          <div class="form-group">
+            <label>Input:</label>
+            <input formControlName="input" placeholder="Test input">
+          </div>
+          <div class="form-group">
+            <label>Expected Output:</label>
+            <input formControlName="expectedOutput" placeholder="Expected result">
+          </div>
+          <div class="form-group">
+            <label>Complexity:</label>
+            <select formControlName="complexity">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="button" (click)="removeExample(i)" *ngIf="examples.length > 1" class="btn-remove">Remove</button>
+        </div>
+        <button type="button" (click)="addExample()" class="btn-add">+ Add Example</button>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="establishForm.invalid || state.isLoading" class="btn-primary">
+          {{ state.isLoading ? 'Creating...' : 'Establish Pattern' }}
+        </button>
+        <button type="button" (click)="resetEstablishForm()" class="btn-secondary">Reset</button>
+      </div>
+    </form>
+
+    <!-- Result -->
+    <div *ngIf="createdPattern" class="result-card">
+      <h4>Pattern Created!</h4>
+      <p><strong>ID:</strong> {{ createdPattern.id }}</p>
+      <p><strong>Name:</strong> {{ createdPattern.name }}</p>
+      <p><strong>Area:</strong> {{ createdPattern.area }}</p>
+      <p><strong>Problem:</strong> {{ createdPattern.problemStatement }}</p>
+      <p><strong>Solution:</strong> {{ createdPattern.solution }}</p>
+      <p><strong>Repeatability Score:</strong> {{ createdPattern.qualityIndicators.repeatabilityScore }}%</p>
+      <p><strong>Learning Curve:</strong> {{ createdPattern.qualityIndicators.learningCurve }}</p>
+      <p><strong>Maintenance Cost:</strong> {{ createdPattern.qualityIndicators.maintenanceCost }}</p>
+      
+      <h5>Code Example:</h5>
+      <pre class="code-block">{{ createdPattern.implementation.codeExamples[0] }}</pre>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 2. Generate Training Section -->
+  <div class="section">
+    <h3>2. Generate Training Materials</h3>
+    
+    <div *ngIf="!createdPattern" class="warning">
+      Please create a pattern first
+    </div>
+
+    <form [formGroup]="trainingForm" (ngSubmit)="generateTrainingMaterials()" *ngIf="createdPattern" class="form">
+      <div class="form-group">
+        <label>Audience:</label>
+        <select formControlName="audience">
+          <option *ngFor="let a of audiences" [value]="a.id">{{ a.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Format:</label>
+        <select formControlName="format">
+          <option value="workshop-ready">Workshop Ready</option>
+          <option value="quick-start">Quick Start</option>
+          <option value="comprehensive">Comprehensive</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Duration (minutes):</label>
+        <input type="number" formControlName="durationMinutes" min="15" max="480">
+      </div>
+
+      <div class="form-group checkbox">
+        <label>
+          <input type="checkbox" formControlName="includeHandsOn">
+          Include Hands-on Exercises
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="trainingForm.invalid || state.isLoading" class="btn-primary">
+          {{ state.isLoading ? 'Generating...' : 'Generate Training' }}
+        </button>
+        <button type="button" (click)="resetTrainingForm()" class="btn-secondary">Reset</button>
+      </div>
+    </form>
+
+    <!-- Result -->
+    <div *ngIf="trainingMaterials" class="result-card">
+      <h4>Training Materials Generated!</h4>
+      <p><strong>Title:</strong> {{ trainingMaterials.title }}</p>
+      <p><strong>Audience:</strong> {{ trainingMaterials.audience }}</p>
+      <p><strong>Duration:</strong> {{ trainingMaterials.durationMinutes }} minutes</p>
+      <p><strong>Modules:</strong> {{ trainingMaterials.modules.length }}</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 3. Create Pipeline Section -->
+  <div class="section">
+    <h3>3. Create Automation Pipeline</h3>
+    
+    <div *ngIf="!createdPattern" class="warning">
+      Please create a pattern first
+    </div>
+
+    <form [formGroup]="pipelineForm" (ngSubmit)="createPipeline()" *ngIf="createdPattern" class="form">
+      <div class="form-group">
+        <label>Pattern ID:</label>
+        <input formControlName="patternId" readonly class="readonly-input">
+      </div>
+
+      <div class="form-group">
+        <label>Template:</label>
+        <select formControlName="template">
+          <option *ngFor="let t of pipelineTemplates" [value]="t.id">{{ t.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="pipelineForm.invalid || state.isLoading" class="btn-primary">
+          {{ state.isLoading ? 'Creating...' : 'Create Pipeline' }}
+        </button>
+        <button type="button" (click)="resetPipelineForm()" class="btn-secondary">Reset</button>
+      </div>
+    </form>
+
+    <!-- Result -->
+    <div *ngIf="pipelineBlueprint" class="result-card">
+      <h4>Pipeline Created!</h4>
+      <p><strong>ID:</strong> {{ pipelineBlueprint.id }}</p>
+      <p><strong>Name:</strong> {{ pipelineBlueprint.name }}</p>
+      <p><strong>Stages:</strong> {{ pipelineBlueprint.stages.length }}</p>
+      <p><strong>Trigger Events:</strong> {{ pipelineBlueprint.triggerEvents.join(', ') }}</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 4. View Patterns Section -->
+  <div class="section">
+    <h3>4. View Patterns</h3>
+    
+    <form [formGroup]="patternSearchForm" (ngSubmit)="onSearch()" class="form">
+      <div class="form-group search-group">
+        <select formControlName="searchType">
+          <option value="id">Search by ID</option>
+          <option value="area">Search by Area</option>
+        </select>
+        <input formControlName="searchValue" type="text" 
+               [placeholder]="patternSearchForm.get('searchType')?.value === 'id' ? 'Enter ID' : 'Enter Area'">
+        <button type="submit" class="btn-primary">Search</button>
+      </div>
+    </form>
+
+    <!-- Search Results -->
+    <div *ngIf="patterns.length > 0" class="results-list">
+      <h4>Found {{ patterns.length }} pattern(s):</h4>
+      <div *ngFor="let pattern of patterns" class="result-item" (click)="selectPattern(pattern)">
+        <p><strong>{{ pattern.name }}</strong> <span class="badge">{{ pattern.status }}</span></p>
+        <p>Area: {{ pattern.area }}</p>
+        <p class="text-small">ID: {{ pattern.id }}</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 5. Health Check Section -->
+  <div class="section">
+    <h3>5. System Health</h3>
+    
+    <button (click)="checkHealth()" class="btn-primary">Check Health</button>
+
+    <div *ngIf="healthStatus" class="health-card">
+      <p><strong>Status:</strong> <span [class.healthy]="healthStatus.status === 'healthy'">{{ healthStatus.status }}</span></p>
+      <p><strong>Service:</strong> {{ healthStatus.service }}</p>
+      <p><strong>Timestamp:</strong> {{ healthStatus.timestamp | date:'medium' }}</p>
+    </div>
+  </div>
+
+ <!-- Simple endpoints list -->
+<div class="endpoints-section">
+  <h4>Available Endpoints (click to test):</h4>
+  <ul>
+    <li>
+      <a href="#" (click)="testEstablishEndpoint($event)">POST /api/patternestablishment/establish</a>
+      <span class="method-badge post">POST</span>
+    </li>
+    <li>
+      <a href="#" (click)="testTrainingEndpoint($event)">POST /api/patternestablishment/training/generate</a>
+      <span class="method-badge post">POST</span>
+    </li>
+    <li>
+      <a href="#" (click)="testPipelineEndpoint($event)">POST /api/patternestablishment/pipelines/create</a>
+      <span class="method-badge post">POST</span>
+    </li>
+    <li>
+      <a href="#" (click)="testGetPatternByIdEndpoint($event, patternIdInput.value)">
+        GET /api/patternestablishment/patterns/{{ '{' }}id{{ '}' }}
+      </a>
+      <span class="method-badge get">GET</span>
+      <input #patternIdInput type="text" placeholder="Enter pattern ID" class="endpoint-input" (click)="$event.stopPropagation()">
+    </li>
+    <li>
+      <a href="#" (click)="testGetPatternsByAreaEndpoint($event, areaInput.value)">
+        GET /api/patternestablishment/patterns/area/{{ '{' }}area{{ '}' }}
+      </a>
+      <span class="method-badge get">GET</span>
+      <input #areaInput type="text" placeholder="Enter area" class="endpoint-input" (click)="$event.stopPropagation()">
+    </li>
+    <li>
+      <a href="#" (click)="testHealthEndpoint($event)">GET /api/patternestablishment/health</a>
+      <span class="method-badge get">GET</span>
+    </li>
+  </ul>
+</div>
+
+</div>

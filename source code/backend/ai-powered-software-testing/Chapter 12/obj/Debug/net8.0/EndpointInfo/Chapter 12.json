@@ -1,0 +1,352 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AI Powered Testing API",
+    "description": "API for bias auditing of test data using AI",
+    "contact": {
+      "name": "Support Team",
+      "email": "support@aipoweredtesting.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/BiasAudit/audit-data": {
+      "post": {
+        "tags": [
+          "BiasAudit"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestDataBiasAuditRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestDataBiasAuditRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestDataBiasAuditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiasAuditResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiasAuditErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiasAuditErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BiasAudit/health": {
+      "get": {
+        "tags": [
+          "BiasAudit"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ping": {
+      "get": {
+        "tags": [
+          "Chapter 12"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BiasAuditErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "datasetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestedRemediation": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BiasAuditResponse": {
+        "type": "object",
+        "properties": {
+          "datasetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "auditId": {
+            "type": "string",
+            "nullable": true
+          },
+          "auditDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BiasFinding"
+            },
+            "nullable": true
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InclusiveSuggestion"
+            },
+            "nullable": true
+          },
+          "overallBiasScore": {
+            "$ref": "#/components/schemas/BiasScore"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BiasFinding": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "biasType": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "severityScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BiasScore": {
+        "type": "object",
+        "properties": {
+          "overallScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "genderBiasScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "racialBiasScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "ageBiasScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "culturalBiasScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskLevel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InclusiveSuggestion": {
+        "type": "object",
+        "properties": {
+          "originalValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestedValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "fieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidenceScore": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDataBiasAuditRequest": {
+        "type": "object",
+        "properties": {
+          "datasetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataSample": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": { }
+            },
+            "nullable": true
+          },
+          "dataContext": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestionCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "aiPrompt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

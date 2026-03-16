@@ -1,0 +1,2707 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Full Spectrum API",
+    "description": "API for full spectrum testing and monitoring",
+    "contact": {
+      "name": "Development Team",
+      "email": "dev@fullspectrum.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/debug/swagger": {
+      "get": {
+        "tags": [
+          "Chapter 11"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Chapter 11"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/FullSpectrum/shift-left": {
+      "post": {
+        "tags": [
+          "FullSpectrum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftLeftRequest"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftLeftRequest"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftLeftRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShiftLeftResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FullSpectrum/analyze-testability": {
+      "post": {
+        "tags": [
+          "FullSpectrum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TestabilityRequest"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TestabilityRequest"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TestabilityRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestabilityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FullSpectrum/shift-right": {
+      "post": {
+        "tags": [
+          "FullSpectrum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftRightRequest"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftRightRequest"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ShiftRightRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShiftRightResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FullSpectrum/create-pipeline": {
+      "post": {
+        "tags": [
+          "FullSpectrum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PipelineRequest"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PipelineRequest"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PipelineRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FullSpectrum/orchestrate-testing": {
+      "post": {
+        "tags": [
+          "FullSpectrum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/OrchestrationRequest"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/OrchestrationRequest"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/OrchestrationRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrchestrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpectrumErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Test": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Test/ping": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AcceptanceCriteria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "requirementId": {
+            "type": "string",
+            "nullable": true
+          },
+          "criterion": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAutomated": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActionPlan": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlertChannel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "destination": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlertConfiguration": {
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertChannel"
+            },
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlertRule": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnalysisDepth": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ChecklistItem": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRequired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeFile": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeSmell": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Codebase": {
+        "type": "object",
+        "properties": {
+          "repositoryUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "branch": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalLines": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeFile"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollaborationEntry": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "participant": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollaborationHistory": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "nullable": true
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollaborationEntry"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollaborationMode": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ComplexityMetric": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "threshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "exceedsThreshold": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComponentCoverage": {
+        "type": "object",
+        "properties": {
+          "componentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "coverage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComponentScore": {
+        "type": "object",
+        "properties": {
+          "componentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostBenefitAnalysis": {
+        "type": "object",
+        "properties": {
+          "estimatedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedBenefit": {
+            "type": "number",
+            "format": "double"
+          },
+          "roi": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoverageMetrics": {
+        "type": "object",
+        "properties": {
+          "requirementCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "scenarioCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskCoverage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DependencyIssue": {
+        "type": "object",
+        "properties": {
+          "dependency": {
+            "type": "string",
+            "nullable": true
+          },
+          "issue": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentEnvironment": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DesignDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DevelopmentStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "activities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentationUpdate": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "update": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutionCapability": {
+        "type": "object",
+        "properties": {
+          "maxParallelTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "supportedEnvironments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutionContext": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "type": "string",
+            "nullable": true
+          },
+          "capabilities": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExecutionCapability"
+              }
+            ],
+            "nullable": true
+          },
+          "timeout": {
+            "type": "string",
+            "format": "date-span"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutionResult": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FailureResponseBehavior": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "FeedbackChannel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackConfiguration": {
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackChannel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackLoop": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceComponent": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetComponent": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackMechanism": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GateAction": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ImpactArea": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImpactAssessment": {
+        "type": "object",
+        "properties": {
+          "assessment": {
+            "type": "string",
+            "nullable": true
+          },
+          "areas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImpactArea"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationGuidance": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "bestPractices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationPlan": {
+        "type": "object",
+        "properties": {
+          "tasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImplementationTask"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationRoadmap": {
+        "type": "object",
+        "properties": {
+          "phases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoadmapPhase"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationTask": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Improvement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedEffort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "impact": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImprovementRecommendation": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IncidentResponse": {
+        "type": "object",
+        "properties": {
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncidentRule"
+            },
+            "nullable": true
+          },
+          "actionPlans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionPlan"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IncidentRule": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntegrationPlan": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntegrationStep": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Monitor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringCoverage": {
+        "type": "object",
+        "properties": {
+          "overallCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "componentCoverage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentCoverage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringMetric": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "target": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringObjective": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "metric": {
+            "type": "string",
+            "nullable": true
+          },
+          "threshold": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlan": {
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringMetric"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationRecommendation": {
+        "type": "object",
+        "properties": {
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Orchestration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "strategy": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrchestrationStrategy"
+              }
+            ]
+          },
+          "executionPlans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestExecutionPlan"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrchestrationFeedback": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrchestrationRequest": {
+        "type": "object",
+        "properties": {
+          "testSuite": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestSuite"
+              }
+            ],
+            "nullable": true
+          },
+          "executionContext": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExecutionContext"
+              }
+            ],
+            "nullable": true
+          },
+          "orchestrationStrategy": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrchestrationStrategy"
+              }
+            ]
+          },
+          "failureResponse": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FailureResponseBehavior"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrchestrationResponse": {
+        "type": "object",
+        "properties": {
+          "orchestrationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "testSuite": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestSuite"
+              }
+            ],
+            "nullable": true
+          },
+          "orchestration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Orchestration"
+              }
+            ],
+            "nullable": true
+          },
+          "executionResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExecutionResult"
+            },
+            "nullable": true
+          },
+          "processedResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProcessedResult"
+            },
+            "nullable": true
+          },
+          "feedback": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrchestrationFeedback"
+              }
+            ],
+            "nullable": true
+          },
+          "performanceMetrics": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerformanceMetrics"
+              }
+            ],
+            "nullable": true
+          },
+          "improvementRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImprovementRecommendation"
+            },
+            "nullable": true
+          },
+          "documentationUpdates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentationUpdate"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrchestrationStrategy": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "PerformanceMetrics": {
+        "type": "object",
+        "properties": {
+          "totalDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "passedTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failedTests": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PerformanceProjection": {
+        "type": "object",
+        "properties": {
+          "expectedThroughput": {
+            "type": "number",
+            "format": "double"
+          },
+          "expectedDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "successRate": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pipeline": {
+        "type": "object",
+        "properties": {
+          "stages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineStage"
+            },
+            "nullable": true
+          },
+          "qualityGates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QualityGate"
+            },
+            "nullable": true
+          },
+          "pipelineId": {
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineRequest": {
+        "type": "object",
+        "properties": {
+          "developmentStages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DevelopmentStage"
+            },
+            "nullable": true
+          },
+          "qualityGates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QualityGate"
+            },
+            "nullable": true
+          },
+          "spectrumCoverage": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpectrumCoverage"
+              }
+            ]
+          },
+          "feedbackMechanisms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackMechanism"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipelineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "pipeline": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Pipeline"
+              }
+            ],
+            "nullable": true
+          },
+          "feedbackConfiguration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FeedbackConfiguration"
+              }
+            ],
+            "nullable": true
+          },
+          "implementationPlan": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImplementationPlan"
+              }
+            ],
+            "nullable": true
+          },
+          "spectrumCoverage": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpectrumCoverage"
+              }
+            ]
+          },
+          "performanceProjections": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerformanceProjection"
+              }
+            ],
+            "nullable": true
+          },
+          "riskAssessment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineRiskAssessment"
+              }
+            ],
+            "nullable": true
+          },
+          "optimizationRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationRecommendation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineRiskAssessment": {
+        "type": "object",
+        "properties": {
+          "risks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "activities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProcessedResult": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "output": {
+            "nullable": true
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductionComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductionSystem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductionComponent"
+            },
+            "nullable": true
+          },
+          "environment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DeploymentEnvironment"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "QualityGate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GateAction"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringRecommendation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendedPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Requirement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "testability": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequirementCollection": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Requirement"
+            },
+            "nullable": true
+          },
+          "stakeholders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stakeholder"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskAssessment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "highRisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskItem"
+            },
+            "nullable": true
+          },
+          "mediumRisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskItem"
+            },
+            "nullable": true
+          },
+          "lowRisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskItem": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "number",
+            "format": "double"
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          },
+          "mitigation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoadmapPhase": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShiftLeftRequest": {
+        "type": "object",
+        "properties": {
+          "requirements": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequirementCollection"
+              }
+            ],
+            "nullable": true
+          },
+          "designDocuments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DesignDocument"
+            },
+            "nullable": true
+          },
+          "shiftDepth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "collaborationMode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollaborationMode"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShiftLeftResponse": {
+        "type": "object",
+        "properties": {
+          "artifactsId": {
+            "type": "string",
+            "nullable": true
+          },
+          "requirements": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequirementCollection"
+              }
+            ],
+            "nullable": true
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AcceptanceCriteria"
+            },
+            "nullable": true
+          },
+          "testScenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestScenario"
+            },
+            "nullable": true
+          },
+          "testDataRequirements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDataRequirement"
+            },
+            "nullable": true
+          },
+          "riskAssessment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RiskAssessment"
+              }
+            ],
+            "nullable": true
+          },
+          "collaborationHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollaborationHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "coverageMetrics": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CoverageMetrics"
+              }
+            ],
+            "nullable": true
+          },
+          "implementationGuidance": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImplementationGuidance"
+              }
+            ],
+            "nullable": true
+          },
+          "validationChecklist": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ValidationChecklist"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShiftRightRequest": {
+        "type": "object",
+        "properties": {
+          "productionSystem": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductionSystem"
+              }
+            ],
+            "nullable": true
+          },
+          "userBehavior": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserBehavior"
+              }
+            ],
+            "nullable": true
+          },
+          "monitoringObjectives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringObjective"
+            },
+            "nullable": true
+          },
+          "feedbackLoops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackLoop"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShiftRightResponse": {
+        "type": "object",
+        "properties": {
+          "monitorsId": {
+            "type": "string",
+            "nullable": true
+          },
+          "productionSystem": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductionSystem"
+              }
+            ],
+            "nullable": true
+          },
+          "monitors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Monitor"
+            },
+            "nullable": true
+          },
+          "feedbackLoops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackLoop"
+            },
+            "nullable": true
+          },
+          "incidentResponse": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IncidentResponse"
+              }
+            ],
+            "nullable": true
+          },
+          "coverageAssessment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MonitoringCoverage"
+              }
+            ],
+            "nullable": true
+          },
+          "alertConfiguration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AlertConfiguration"
+              }
+            ],
+            "nullable": true
+          },
+          "integrationPlan": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPlan"
+              }
+            ],
+            "nullable": true
+          },
+          "costBenefitAnalysis": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CostBenefitAnalysis"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpectrumCoverage": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "SpectrumDiagnosticData": {
+        "type": "object",
+        "properties": {
+          "ambiguousRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "clarificationQuestions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "frameworkIssues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "technologyMismatches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "complexityIssues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendedSimplifications": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "conflictingStages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "dependencyIssues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "complexityFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "simplificationSuggestions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpectrumErrorResponse": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "spectrumLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoverySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fallbackSuggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosticData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpectrumDiagnosticData"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Stakeholder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Test": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDataRequirement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "testScenarioId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "sampleData": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestExecutionPlan": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestScenario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "expectedOutcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestSuite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Test"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestabilityAnalysis": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeSmells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeSmell"
+            },
+            "nullable": true
+          },
+          "dependencyIssues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DependencyIssue"
+            },
+            "nullable": true
+          },
+          "complexityMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComplexityMetric"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestabilityFramework": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportedLanguages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestabilityRequest": {
+        "type": "object",
+        "properties": {
+          "codebase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Codebase"
+              }
+            ],
+            "nullable": true
+          },
+          "testabilityFramework": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestabilityFramework"
+              }
+            ],
+            "nullable": true
+          },
+          "analysisDepth": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalysisDepth"
+              }
+            ]
+          },
+          "improvementSuggestions": {
+            "type": "boolean"
+          },
+          "refactoringRecommendations": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestabilityResponse": {
+        "type": "object",
+        "properties": {
+          "analysisId": {
+            "type": "string",
+            "nullable": true
+          },
+          "codebase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Codebase"
+              }
+            ],
+            "nullable": true
+          },
+          "analysis": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestabilityAnalysis"
+              }
+            ],
+            "nullable": true
+          },
+          "testabilityScore": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestabilityScore"
+              }
+            ],
+            "nullable": true
+          },
+          "improvements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Improvement"
+            },
+            "nullable": true
+          },
+          "refactoringRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringRecommendation"
+            },
+            "nullable": true
+          },
+          "impactAssessment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImpactAssessment"
+              }
+            ],
+            "nullable": true
+          },
+          "implementationRoadmap": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImplementationRoadmap"
+              }
+            ],
+            "nullable": true
+          },
+          "monitoringPlan": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MonitoringPlan"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestabilityScore": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "componentScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentScore"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserBehavior": {
+        "type": "object",
+        "properties": {
+          "patterns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPattern"
+            },
+            "nullable": true
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSegment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPattern": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "frequency": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSegment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "criteria": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationChecklist": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChecklistItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

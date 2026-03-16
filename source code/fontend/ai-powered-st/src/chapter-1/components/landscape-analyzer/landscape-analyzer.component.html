@@ -1,0 +1,104 @@
+<!-- components/landscape-analyzer/landscape-analyzer.component.html (updated sections) -->
+
+<!-- Frontend Frameworks section - update formArrayName and loop -->
+<div class="form-group">
+  <label>Frontend Frameworks</label>
+  <div formArrayName="frontendFrameworks">
+    <div *ngFor="let framework of frontendFrameworksArray.controls; let i = index" class="array-item">
+      <input [formControlName]="i" type="text" class="form-control" placeholder="e.g., Angular, React">
+      <button type="button" class="btn-remove" (click)="removeFrontendFramework(i)" *ngIf="frontendFrameworksArray.length > 1">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addFrontendFramework()">+ Add Framework</button>
+</div>
+
+<!-- Backend Services section - update formArrayName and loop -->
+<div class="form-card">
+  <h3>Backend Services</h3>
+  <div formArrayName="backendServices">
+    <div *ngFor="let service of backendServicesArray.controls; let i = index" class="service-card">
+      <!-- ... rest of the service form ... -->
+      <button type="button" class="btn-remove-service" *ngIf="backendServicesArray.length > 1" (click)="removeBackendService(i)">
+        Remove Service
+      </button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addBackendService()">+ Add Backend Service</button>
+</div>
+
+<!-- Data Sources section - update formArrayName and loop to use dataSourcesArray -->
+<div class="form-card">
+  <h3>Data Sources</h3>
+  <div formArrayName="dataSources">
+    <div *ngFor="let source of dataSourcesArray.controls; let i = index" class="array-item">
+      <select [formControlName]="i" class="form-control">
+        <option *ngFor="let ds of dataSourceOptions" [value]="ds.value">{{ ds.label }}</option>
+      </select>
+      <button type="button" class="btn-remove" (click)="removeDataSource(i)" *ngIf="dataSourcesArray.length > 1">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addDataSource()">+ Add Data Source</button>
+</div>
+
+<!-- Critical User Journeys section - update to use criticalUserJourneysArray -->
+<div class="form-card">
+  <h3>Critical User Journeys *</h3>
+  <div formArrayName="criticalUserJourneys">
+    <div *ngFor="let journey of criticalUserJourneysArray.controls; let i = index" class="array-item">
+      <input [formControlName]="i" type="text" class="form-control" placeholder="e.g., User Login, Checkout">
+      <button type="button" class="btn-remove" (click)="removeCriticalUserJourney(i)" *ngIf="criticalUserJourneysArray.length > 1">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addCriticalUserJourney()">+ Add User Journey</button>
+</div>
+
+<!-- Testing Focus section - update to use testingFocusArray -->
+<div class="form-card">
+  <h3>Testing Focus Areas *</h3>
+  <div formArrayName="testingFocus">
+    <div *ngFor="let focus of testingFocusArray.controls; let i = index" class="array-item">
+      <select [formControlName]="i" class="form-control">
+        <option *ngFor="let area of focusAreaOptions" [value]="area.value">{{ area.label }}</option>
+      </select>
+      <button type="button" class="btn-remove" (click)="removeTestingFocus(i)" *ngIf="testingFocusArray.length > 1">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addTestingFocus()">+ Add Focus Area</button>
+</div>
+
+<!-- Compliance Requirements section -->
+<div class="form-group">
+  <label>Compliance Requirements</label>
+  <div formArrayName="complianceRequirements">
+    <div *ngFor="let req of complianceRequirementsArray.controls; let i = index" class="array-item">
+      <input [formControlName]="i" type="text" class="form-control" placeholder="e.g., GDPR, HIPAA">
+      <button type="button" class="btn-remove" (click)="removeComplianceRequirement(i)">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addComplianceRequirement()">+ Add Requirement</button>
+</div>
+
+<!-- Data Sensitivity section -->
+<div class="form-group">
+  <label>Data Sensitivity</label>
+  <div formArrayName="dataSensitivity">
+    <div *ngFor="let sens of dataSensitivityArray.controls; let i = index" class="array-item">
+      <input [formControlName]="i" type="text" class="form-control" placeholder="e.g., PII, Financial">
+      <button type="button" class="btn-remove" (click)="removeDataSensitivity(i)">×</button>
+    </div>
+  </div>
+  <button type="button" class="btn-add" (click)="addDataSensitivity()">+ Add Sensitivity</button>
+</div>
+
+<!-- Requested Artifacts section -->
+<div class="form-group">
+  <label>Requested Artifacts</label>
+  <div formArrayName="requestedArtifacts">
+    <div *ngFor="let artifact of requestedArtifactsArray.controls; let i = index" class="checkbox-group">
+      <label>
+        <input [formControlName]="i" type="checkbox" [value]="artifact.value">
+        {{ getArtifactLabel(artifact.value) }}
+      </label>
+    </div>
+  </div>
+</div>

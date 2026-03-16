@@ -1,0 +1,1922 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TDD Reimagined",
+    "description": "TDD-specific endpoints for test-driven development workflows",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/tdd-reimagined/generate-test-first": {
+      "post": {
+        "tags": [
+          "tdd-reimagined"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TDDRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TDDRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TDDRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDCycleResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDCycleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDCycleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tdd-reimagined/implement-from-failing-test": {
+      "post": {
+        "tags": [
+          "tdd-reimagined"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImplementationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImplementationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImplementationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImplementationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImplementationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImplementationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tdd-reimagined/refactor-with-confidence": {
+      "post": {
+        "tags": [
+          "tdd-reimagined"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefactorRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefactorRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefactorRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefactorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefactorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefactorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tdd-reimagined/predict-future-tests": {
+      "post": {
+        "tags": [
+          "tdd-reimagined"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuturePredictionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuturePredictionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuturePredictionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuturePredictionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuturePredictionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuturePredictionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TDDErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AcceptanceCriteria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "testConditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssertionFailure": {
+        "type": "object",
+        "properties": {
+          "expected": {
+            "type": "string",
+            "nullable": true
+          },
+          "actual": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangePrediction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "number",
+            "format": "double"
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "timeline": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeSmell": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          },
+          "fixSuggestion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeSmellAnalysis": {
+        "type": "object",
+        "properties": {
+          "implementationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeSmells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeSmell"
+            },
+            "nullable": true
+          },
+          "overallSmellScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeSnippet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dependency"
+            },
+            "nullable": true
+          },
+          "complexityMetrics": {
+            "$ref": "#/components/schemas/ComplexityMetrics"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComplexityMetrics": {
+        "type": "object",
+        "properties": {
+          "cyclomaticComplexity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linesOfCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "methodCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "depthOfInheritance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "classCoupling": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfidenceMetrics": {
+        "type": "object",
+        "properties": {
+          "testQuality": {
+            "type": "number",
+            "format": "double"
+          },
+          "implementationQuality": {
+            "type": "number",
+            "format": "double"
+          },
+          "refactoringSafety": {
+            "type": "number",
+            "format": "double"
+          },
+          "overallConfidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "confidenceFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "riskFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfidenceSummary": {
+        "type": "object",
+        "properties": {
+          "averageConfidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "highConfidencePredictions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mediumConfidencePredictions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lowConfidencePredictions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "overallReliability": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Constraint": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Dependency": {
+        "type": "object",
+        "properties": {
+          "fromPhase": {
+            "type": "string",
+            "nullable": true
+          },
+          "toPhase": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "lagDays": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Example": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "nullable": true
+          },
+          "given": {
+            "type": "string",
+            "nullable": true
+          },
+          "when": {
+            "type": "string",
+            "nullable": true
+          },
+          "then": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedResult": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FailureAnalysis": {
+        "type": "object",
+        "properties": {
+          "rootCause": {
+            "type": "string",
+            "nullable": true
+          },
+          "contributingFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "suggestedFixes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "impactLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "canRetry": {
+            "type": "boolean"
+          },
+          "prerequisitesForRetry": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FailureDetails": {
+        "type": "object",
+        "properties": {
+          "expected": {
+            "type": "string",
+            "nullable": true
+          },
+          "actual": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuturePredictionRequest": {
+        "type": "object",
+        "properties": {
+          "currentCode": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "productRoadmap": {
+            "$ref": "#/components/schemas/ProductRoadmap"
+          },
+          "timeHorizon": {
+            "$ref": "#/components/schemas/TimeHorizon"
+          },
+          "confidenceThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "focusAreas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuturePredictionResponse": {
+        "type": "object",
+        "properties": {
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeHorizon": {
+            "$ref": "#/components/schemas/TimeHorizon"
+          },
+          "changePredictions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChangePrediction"
+            },
+            "nullable": true
+          },
+          "futureTestRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FutureTestRecommendation"
+            },
+            "nullable": true
+          },
+          "prioritizedRecommendations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FutureTestRecommendation"
+              }
+            },
+            "nullable": true
+          },
+          "confidenceSummary": {
+            "$ref": "#/components/schemas/ConfidenceSummary"
+          },
+          "implementationTimeline": {
+            "$ref": "#/components/schemas/ImplementationTimeline"
+          },
+          "riskMitigationStrategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskMitigationStrategy"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FutureTestRecommendation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "testType": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          },
+          "implementationEffort": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeneratedTest": {
+        "type": "object",
+        "properties": {
+          "testCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "testFramework": {
+            "type": "string",
+            "nullable": true
+          },
+          "testName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "isFailingByDesign": {
+            "type": "boolean"
+          },
+          "expectedFailure": {
+            "$ref": "#/components/schemas/FailureDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationAnalysis": {
+        "type": "object",
+        "properties": {
+          "implementationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "passesTests": {
+            "type": "boolean"
+          },
+          "codeQuality": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintainabilityScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "string",
+            "nullable": true
+          },
+          "rootCause": {
+            "type": "string",
+            "nullable": true
+          },
+          "failedTests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "suggestedFixes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationRequest": {
+        "type": "object",
+        "properties": {
+          "failingTest": {
+            "$ref": "#/components/schemas/GeneratedTest"
+          },
+          "failureDetails": {
+            "$ref": "#/components/schemas/FailureDetails"
+          },
+          "implementationStrategy": {
+            "type": "string",
+            "nullable": true
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Constraint"
+            },
+            "nullable": true
+          },
+          "allowMultipleImplementations": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationResponse": {
+        "type": "object",
+        "properties": {
+          "cycleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "implementations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestedImplementation"
+            },
+            "nullable": true
+          },
+          "recommendedImplementation": {
+            "$ref": "#/components/schemas/TestedImplementation"
+          },
+          "alternativeApproaches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestedImplementation"
+            },
+            "nullable": true
+          },
+          "codeSmellAnalysis": {
+            "$ref": "#/components/schemas/CodeSmellAnalysis"
+          },
+          "refactoringOpportunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringOpportunity"
+            },
+            "nullable": true
+          },
+          "nextTDDCycle": {
+            "$ref": "#/components/schemas/TDDCycle"
+          },
+          "diagnostic": {
+            "$ref": "#/components/schemas/ImplementationDiagnostic"
+          },
+          "suggestedNextStep": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationSuggestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "approach": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeSnippet": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "explanation": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeoffs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationTimeline": {
+        "type": "object",
+        "properties": {
+          "phases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Phase"
+            },
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dependency"
+            },
+            "nullable": true
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Risk"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImprovementMetrics": {
+        "type": "object",
+        "properties": {
+          "overallImprovement": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintainabilityGain": {
+            "type": "number",
+            "format": "double"
+          },
+          "readabilityGain": {
+            "type": "number",
+            "format": "double"
+          },
+          "performanceChange": {
+            "type": "number",
+            "format": "double"
+          },
+          "complexityReduction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linesOfCodeChange": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LearningPoint": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "example": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceImpact": {
+        "type": "object",
+        "properties": {
+          "estimatedMaintenanceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "improvementAreas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "technicalDebtReduction": {
+            "type": "number",
+            "format": "double"
+          },
+          "longTermSustainability": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Milestone": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliverables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Phase": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliverables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductRoadmap": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoadmapFeature"
+            },
+            "nullable": true
+          },
+          "milestones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Milestone"
+            },
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactorRequest": {
+        "type": "object",
+        "properties": {
+          "workingCode": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "testSuite": {
+            "$ref": "#/components/schemas/TestSuite"
+          },
+          "refactoringGoals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringGoal"
+            },
+            "nullable": true
+          },
+          "safetyMeasures": {
+            "$ref": "#/components/schemas/SafetyMeasures"
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Constraint"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactorResponse": {
+        "type": "object",
+        "properties": {
+          "cycleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "completedSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringStepResult"
+            },
+            "nullable": true
+          },
+          "originalCode": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "refactoredCode": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "improvementMetrics": {
+            "$ref": "#/components/schemas/ImprovementMetrics"
+          },
+          "testSafetyReport": {
+            "$ref": "#/components/schemas/TestSafetyReport"
+          },
+          "futureMaintenanceImpact": {
+            "$ref": "#/components/schemas/MaintenanceImpact"
+          },
+          "additionalRefactoringOpportunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringOpportunity"
+            },
+            "nullable": true
+          },
+          "failedStep": {
+            "$ref": "#/components/schemas/RefactoringStep"
+          },
+          "failureAnalysis": {
+            "$ref": "#/components/schemas/FailureAnalysis"
+          },
+          "rollbackSuggestion": {
+            "$ref": "#/components/schemas/RollbackSuggestion"
+          },
+          "safeToContinue": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringGoal": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringHint": {
+        "type": "object",
+        "properties": {
+          "implementationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedEffort": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringOpportunity": {
+        "type": "object",
+        "properties": {
+          "implementationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedImprovement": {
+            "type": "number",
+            "format": "double"
+          },
+          "effort": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringStep": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "before": {
+            "type": "string",
+            "nullable": true
+          },
+          "after": {
+            "type": "string",
+            "nullable": true
+          },
+          "safetyChecks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requiresManualReview": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefactoringStepResult": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "$ref": "#/components/schemas/RefactoringStep"
+          },
+          "successful": {
+            "type": "boolean"
+          },
+          "resultingCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestResult"
+            },
+            "nullable": true
+          },
+          "failureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "failureAnalysis": {
+            "$ref": "#/components/schemas/FailureAnalysis"
+          },
+          "safeToContinue": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeAfterStep": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Risk": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "string",
+            "nullable": true
+          },
+          "mitigationStrategy": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskMitigationStrategy": {
+        "type": "object",
+        "properties": {
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "strategy": {
+            "type": "string",
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          },
+          "implementationSteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "expectedOutcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoadmapFeature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RollbackSuggestion": {
+        "type": "object",
+        "properties": {
+          "stepNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeState": {
+            "type": "string",
+            "nullable": true
+          },
+          "testsToVerify": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommended": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SafetyMeasures": {
+        "type": "object",
+        "properties": {
+          "preserveBehavior": {
+            "type": "boolean"
+          },
+          "createCheckpoints": {
+            "type": "boolean"
+          },
+          "suggestRollbackPoints": {
+            "type": "boolean"
+          },
+          "maxStepsWithoutCommit": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TDDCycle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "phase": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "focusAreas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "test": {
+            "$ref": "#/components/schemas/GeneratedTest"
+          },
+          "implementation": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "refactoringSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringStep"
+            },
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TDDCycleResponse": {
+        "type": "object",
+        "properties": {
+          "cycleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phase": {
+            "type": "string",
+            "nullable": true
+          },
+          "generatedTest": {
+            "$ref": "#/components/schemas/GeneratedTest"
+          },
+          "implementationSuggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImplementationSuggestion"
+            },
+            "nullable": true
+          },
+          "refactoringHints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefactoringHint"
+            },
+            "nullable": true
+          },
+          "estimatedTimeline": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "confidenceMetrics": {
+            "$ref": "#/components/schemas/ConfidenceMetrics"
+          },
+          "learningPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LearningPoint"
+            },
+            "nullable": true
+          },
+          "nextSteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TDDErrorResponse": {
+        "type": "object",
+        "properties": {
+          "phase": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoveryStrategy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "suggestedFallback": {
+            "type": "string",
+            "nullable": true
+          },
+          "learningOpportunity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TDDRequest": {
+        "type": "object",
+        "properties": {
+          "userStory": {
+            "$ref": "#/components/schemas/UserStory"
+          },
+          "tddStyle": {
+            "type": "string",
+            "nullable": true
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Constraint"
+            },
+            "nullable": true
+          },
+          "generateMultipleApproaches": {
+            "type": "boolean"
+          },
+          "maxComplexityLevel": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestCoverage": {
+        "type": "object",
+        "properties": {
+          "lineCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "branchCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "methodCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "uncoveredLines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestResult": {
+        "type": "object",
+        "properties": {
+          "testName": {
+            "type": "string",
+            "nullable": true
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "assertionFailures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssertionFailure"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestSafetyReport": {
+        "type": "object",
+        "properties": {
+          "totalTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "passingTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failingTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/TestCoverage"
+          },
+          "safetyIssues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allTestsPass": {
+            "type": "boolean"
+          },
+          "totalTestDuration": {
+            "type": "string",
+            "format": "date-span"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestSuite": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedTest"
+            },
+            "nullable": true
+          },
+          "framework": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "passRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/TestCoverage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestedImplementation": {
+        "type": "object",
+        "properties": {
+          "implementation": {
+            "$ref": "#/components/schemas/CodeSnippet"
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestResult"
+            },
+            "nullable": true
+          },
+          "analysis": {
+            "$ref": "#/components/schemas/ImplementationAnalysis"
+          },
+          "passesAllTests": {
+            "type": "boolean"
+          },
+          "qualityScore": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeHorizon": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "UserStory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AcceptanceCriteria"
+            },
+            "nullable": true
+          },
+          "businessRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Example"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

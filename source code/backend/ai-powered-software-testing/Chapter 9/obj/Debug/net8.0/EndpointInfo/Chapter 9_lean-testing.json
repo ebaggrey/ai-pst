@@ -1,0 +1,10 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lean Testing",
+    "description": "Lean Testing optimization endpoints",
+    "version": "v1"
+  },
+  "paths": { },
+  "components": { }
+}

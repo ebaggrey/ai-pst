@@ -1,0 +1,1785 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pipeline Cookbook API",
+    "description": "Intelligent CI/CD Pipeline Management API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/pipeline-cookbook/generate-pipeline": {
+      "post": {
+        "tags": [
+          "PipelineCookbook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineGenerationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineGenerationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineGenerationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligentPipelineResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligentPipelineResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligentPipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pipeline-cookbook/diagnose-failure": {
+      "post": {
+        "tags": [
+          "PipelineCookbook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosisRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosisRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pipeline-cookbook/optimize-performance": {
+      "post": {
+        "tags": [
+          "PipelineCookbook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pipeline-cookbook/predict-issues": {
+      "post": {
+        "tags": [
+          "PipelineCookbook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pipeline-cookbook/adapt-to-change": {
+      "post": {
+        "tags": [
+          "PipelineCookbook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdaptationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdaptationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdaptationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdaptationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdaptationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdaptationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdaptationGuidance": {
+        "type": "object",
+        "properties": {
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdaptationPlan": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdaptationStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdaptationRequest": {
+        "type": "object",
+        "properties": {
+          "changeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "impactAssessment": {
+            "$ref": "#/components/schemas/ImpactAssessment"
+          },
+          "adaptationStrategy": {
+            "$ref": "#/components/schemas/AdaptationStrategy"
+          },
+          "validationRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdaptationResponse": {
+        "type": "object",
+        "properties": {
+          "adaptationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "adaptationPlan": {
+            "$ref": "#/components/schemas/AdaptationPlan"
+          },
+          "validationResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationResult"
+            },
+            "nullable": true
+          },
+          "rollbackPlan": {
+            "$ref": "#/components/schemas/RollbackPlan"
+          },
+          "effortEstimate": {
+            "$ref": "#/components/schemas/EffortEstimate"
+          },
+          "implementationSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImplementationStep"
+            },
+            "nullable": true
+          },
+          "testingStrategy": {
+            "$ref": "#/components/schemas/TestingStrategy"
+          },
+          "communicationPlan": {
+            "$ref": "#/components/schemas/CommunicationPlan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdaptationStep": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdaptationStrategy": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Bottleneck": {
+        "type": "object",
+        "properties": {
+          "stageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "impactScore": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Change": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodebaseAnalysis": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "testCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalLines": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommunicationPlan": {
+        "type": "object",
+        "properties": {
+          "stakeholders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConflictingConstraint": {
+        "type": "object",
+        "properties": {
+          "constraintA": {
+            "type": "string",
+            "nullable": true
+          },
+          "constraintB": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConstraintSuggestion": {
+        "type": "object",
+        "properties": {
+          "constraint": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestedValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecisionPoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiagnosisDepth": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DiagnosisRequest": {
+        "type": "object",
+        "properties": {
+          "failureLogs": {
+            "$ref": "#/components/schemas/FailureLogs"
+          },
+          "recentChanges": {
+            "$ref": "#/components/schemas/RecentChanges"
+          },
+          "diagnosisDepth": {
+            "$ref": "#/components/schemas/DiagnosisDepth"
+          },
+          "includeRemediation": {
+            "type": "boolean"
+          },
+          "preventionStrategies": {
+            "type": "boolean"
+          },
+          "pipelineContext": {
+            "$ref": "#/components/schemas/PipelineContext"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiagnosisResponse": {
+        "type": "object",
+        "properties": {
+          "diagnosisId": {
+            "type": "string",
+            "nullable": true
+          },
+          "failureDetails": {
+            "$ref": "#/components/schemas/ParsedFailure"
+          },
+          "rootCause": {
+            "$ref": "#/components/schemas/RootCause"
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "remediationSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemediationStep"
+            },
+            "nullable": true
+          },
+          "preventionStrategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreventionStrategy"
+            },
+            "nullable": true
+          },
+          "similarHistoricalFailures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalFailure"
+            },
+            "nullable": true
+          },
+          "impactAssessment": {
+            "$ref": "#/components/schemas/ImpactAssessment"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EffortEstimate": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "complexity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstimatedMetrics": {
+        "type": "object",
+        "properties": {
+          "estimatedDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "estimatedCost": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpectedImprovement": {
+        "type": "object",
+        "properties": {
+          "metric": {
+            "type": "string",
+            "nullable": true
+          },
+          "improvement": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FailureLogs": {
+        "type": "object",
+        "properties": {
+          "rawLogs": {
+            "type": "string",
+            "nullable": true
+          },
+          "failureTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricalData": {
+        "type": "object",
+        "properties": {
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineRun"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricalFailure": {
+        "type": "object",
+        "properties": {
+          "failureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImpactAssessment": {
+        "type": "object",
+        "properties": {
+          "impactScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "affectedComponents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationPlan": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImplementationStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationStep": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntelligentPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "pipelineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "pipelineDefinition": {
+            "$ref": "#/components/schemas/PipelineDefinition"
+          },
+          "decisionPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DecisionPoint"
+            },
+            "nullable": true
+          },
+          "recoveryPaths": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecoveryPath"
+            },
+            "nullable": true
+          },
+          "estimatedMetrics": {
+            "$ref": "#/components/schemas/EstimatedMetrics"
+          },
+          "optimizationSuggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationSuggestion"
+            },
+            "nullable": true
+          },
+          "monitoringConfiguration": {
+            "$ref": "#/components/schemas/MonitoringConfiguration"
+          },
+          "adaptationGuidance": {
+            "$ref": "#/components/schemas/AdaptationGuidance"
+          },
+          "constraintConflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConflictingConstraint"
+            },
+            "nullable": true
+          },
+          "constraintSuggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConstraintSuggestion"
+            },
+            "nullable": true
+          },
+          "partialPipeline": {
+            "$ref": "#/components/schemas/PartialPipeline"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Mitigation": {
+        "type": "object",
+        "properties": {
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringConfiguration": {
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringRecommendation": {
+        "type": "object",
+        "properties": {
+          "metric": {
+            "type": "string",
+            "nullable": true
+          },
+          "threshold": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationConstraints": {
+        "type": "object",
+        "properties": {
+          "maxBudget": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxDowntime": {
+            "type": "string",
+            "format": "date-span"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationFocus": {
+        "type": "object",
+        "properties": {
+          "speed": {
+            "type": "boolean"
+          },
+          "reliability": {
+            "type": "boolean"
+          },
+          "cost": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationGoal": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/Priority"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationOpportunity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationRequest": {
+        "type": "object",
+        "properties": {
+          "currentMetrics": {
+            "$ref": "#/components/schemas/PipelineMetrics"
+          },
+          "identifiedBottlenecks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bottleneck"
+            },
+            "nullable": true
+          },
+          "optimizationGoals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationGoal"
+            },
+            "nullable": true
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/OptimizationConstraints"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationResponse": {
+        "type": "object",
+        "properties": {
+          "optimizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPerformance": {
+            "$ref": "#/components/schemas/PipelineMetrics"
+          },
+          "optimizationOpportunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationOpportunity"
+            },
+            "nullable": true
+          },
+          "proposedStrategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationStrategy"
+            },
+            "nullable": true
+          },
+          "tradeOffAnalysis": {
+            "$ref": "#/components/schemas/TradeOffAnalysis"
+          },
+          "implementationPlan": {
+            "$ref": "#/components/schemas/ImplementationPlan"
+          },
+          "expectedImprovements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExpectedImprovement"
+            },
+            "nullable": true
+          },
+          "riskAssessment": {
+            "$ref": "#/components/schemas/RiskAssessment"
+          },
+          "validationPlan": {
+            "$ref": "#/components/schemas/ValidationPlan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationStrategy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationSuggestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ParsedFailure": {
+        "type": "object",
+        "properties": {
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PartialPipeline": {
+        "type": "object",
+        "properties": {
+          "stages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatternMatch": {
+        "type": "object",
+        "properties": {
+          "patternId": {
+            "type": "string",
+            "nullable": true
+          },
+          "similarity": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineConstraints": {
+        "type": "object",
+        "properties": {
+          "maxDuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "maxCostPerRun": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineContext": {
+        "type": "object",
+        "properties": {
+          "pipelineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineDefinition": {
+        "type": "object",
+        "properties": {
+          "stages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoverySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fallbackSuggestion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineGenerationRequest": {
+        "type": "object",
+        "properties": {
+          "codebaseAnalysis": {
+            "$ref": "#/components/schemas/CodebaseAnalysis"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/PipelineConstraints"
+          },
+          "teamPractices": {
+            "$ref": "#/components/schemas/TeamPractices"
+          },
+          "optimizationFocus": {
+            "$ref": "#/components/schemas/OptimizationFocus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineMetrics": {
+        "type": "object",
+        "properties": {
+          "averageDuration": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "successRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "resourceUtilization": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PipelineRun": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "succeeded": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Prediction": {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredictionRequest": {
+        "type": "object",
+        "properties": {
+          "proposedChanges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProposedChange"
+            },
+            "nullable": true
+          },
+          "historicalData": {
+            "$ref": "#/components/schemas/HistoricalData"
+          },
+          "predictionHorizon": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "confidenceThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "includeMitigations": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredictionResponse": {
+        "type": "object",
+        "properties": {
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "proposedChanges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProposedChange"
+            },
+            "nullable": true
+          },
+          "predictions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prediction"
+            },
+            "nullable": true
+          },
+          "confidenceScores": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "riskScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskScore"
+            },
+            "nullable": true
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Mitigation"
+            },
+            "nullable": true
+          },
+          "recommendedActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecommendedAction"
+            },
+            "nullable": true
+          },
+          "monitoringRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringRecommendation"
+            },
+            "nullable": true
+          },
+          "historicalEvidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatternMatch"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreventionStrategy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Priority": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProposedChange": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecentChanges": {
+        "type": "object",
+        "properties": {
+          "changes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Change"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecommendedAction": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "priority": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecoveryPath": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemediationStep": {
+        "type": "object",
+        "properties": {
+          "stepNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Risk": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskAssessment": {
+        "type": "object",
+        "properties": {
+          "risks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Risk"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskScore": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RollbackPlan": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RollbackStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RollbackStep": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RootCause": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "component": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Stage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TeamPractices": {
+        "type": "object",
+        "properties": {
+          "codeReviews": {
+            "type": "boolean"
+          },
+          "automatedTesting": {
+            "type": "boolean"
+          },
+          "deploymentStrategy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestingStrategy": {
+        "type": "object",
+        "properties": {
+          "testTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradeOff": {
+        "type": "object",
+        "properties": {
+          "strategyA": {
+            "type": "string",
+            "nullable": true
+          },
+          "strategyB": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradeOffAnalysis": {
+        "type": "object",
+        "properties": {
+          "tradeOffs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TradeOff"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationPlan": {
+        "type": "object",
+        "properties": {
+          "testCases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationResult": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "passed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationRule": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

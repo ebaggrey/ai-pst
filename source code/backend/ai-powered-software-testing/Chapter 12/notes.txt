@@ -1,0 +1,20 @@
+
+NuGet packages Required
+-----------------------------
+
+
+Command > Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 8.0.0
+
+
+Microsoft.EntityFrameworkCore.SqlServer - Provides SQL Server support
+
+Microsoft.EntityFrameworkCore.Tools - For migrations
+
+Microsoft.EntityFrameworkCore.Design - For design-time operations
+
+
+
+Install-Package Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore -Version 8.0.0
+Install-Package Microsoft.Extensions.Diagnostics.HealthChecks -Version 8.0.0
+Install-Package Microsoft.ApplicationInsights.AspNetCore 
+Install-package AspNetCore.HealthChecks.Uris -Version 8.0.0

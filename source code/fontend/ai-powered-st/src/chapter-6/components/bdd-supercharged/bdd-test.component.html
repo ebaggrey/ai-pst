@@ -1,0 +1,52 @@
+<!-- components/bdd-test/bdd-test.component.html -->
+<div class="container">
+  <!-- Endpoint Selection -->
+  <div class="endpoint-section">
+    <h2>BDD Supercharged API Test</h2>
+    <div class="endpoint-list">
+      <a 
+        *ngFor="let endpoint of endpoints"
+        href="javascript:void(0)" 
+        class="endpoint-link"
+        [class.active]="selectedEndpoint() === endpoint.id"
+        (click)="setEndpoint(endpoint.id)">
+        {{ endpoint.name }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Request Display -->
+  <div class="request-section">
+    <h3>Request Payload</h3>
+    <pre class="request-payload">{{ getCurrentRequest() | json }}</pre>
+  </div>
+
+  <!-- Execute Button -->
+  <div class="action-section">
+    <button 
+      class="execute-btn" 
+      (click)="executeRequest()" 
+      [disabled]="loading()">
+      <span *ngIf="!loading()">Execute Request</span>
+      <span *ngIf="loading()">Executing...</span>
+    </button>
+  </div>
+
+  <!-- Error Display -->
+  <div class="error-section" *ngIf="errorMessage()">
+    <h3>Error</h3>
+    <pre class="error-message">{{ errorMessage() }}</pre>
+  </div>
+
+  <!-- Response Display -->
+  <div class="response-section" *ngIf="responseData()">
+    <h3>Response</h3>
+    <pre class="response-data">{{ responseData() | json }}</pre>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="base-url">API Base URL: {{ environment.apiBaseUrl }}</span>
+    <span class="timestamp">Last Updated: {{ getCurrentTimestamp() }}</span>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<div class="test-generator-container">
+  <h2>AI Test Generator</h2>
+  
+  <!-- Error Display -->
+  <div *ngIf="error" class="error-card">
+    <h4>Error: {{ error.message }}</h4>
+    <p *ngIf="error.suggestion">💡 Suggestion: {{ error.suggestion }}</p>
+    <p *ngIf="error.errorId">Error ID: {{ error.errorId }}</p>
+    <p>Provider: {{ error.provider }} | Recoverable: {{ error.recoverable ? 'Yes' : 'No' }}</p>
+  </div>
+
+  <!-- Main Form -->
+  <div class="form-section">
+    <h3>Generate Test Case</h3>
+    <form [formGroup]="testGenerationForm" (ngSubmit)="generateTestCase()">
+      
+      <div class="form-group">
+        <label for="prompt">Test Description *</label>
+        <textarea
+          id="prompt"
+          formControlName="prompt"
+          rows="4"
+          placeholder="Describe what you want to test (e.g., 'Test user login with valid and invalid credentials')"
+          [class.is-invalid]="testGenerationForm.get('prompt')?.invalid && testGenerationForm.get('prompt')?.touched"
+        ></textarea>
+        <div class="validation-error" *ngIf="testGenerationForm.get('prompt')?.invalid && testGenerationForm.get('prompt')?.touched">
+          {{ getPromptErrorMessage() }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="llmProvider">AI Provider</label>
+          <select id="llmProvider" formControlName="llmProvider">
+            <option *ngFor="let provider of llmProviders" [value]="provider">
+              {{ provider | titlecase }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="urgency">Urgency Level</label>
+          <select id="urgency" formControlName="urgency">
+            <option *ngFor="let level of urgencyLevels" [value]="level.value">
+              {{ level.label }}
+            </option>
+          </select>
+          <div class="validation-error" *ngIf="testGenerationForm.get('urgency')?.invalid && testGenerationForm.get('urgency')?.touched">
+            {{ getUrgencyErrorMessage() }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="context">Context (Optional)</label>
+        <textarea
+          id="context"
+          formControlName="context"
+          rows="2"
+          placeholder="Additional context for the AI"
+        ></textarea>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" [disabled]="isLoading" class="btn-primary">
+          {{ isLoading ? 'Generating...' : 'Generate Test Case' }}
+        </button>
+        <button type="button" (click)="rawGenerateTestExample()" class="btn-secondary">
+          Show HTTP Example
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Generated Code Display -->
+  <div *ngIf="testResponse" class="result-section">
+    <h3>Generated Test Case</h3>
+    <div class="response-meta">
+      <span class="badge">Framework: {{ testResponse.testFramework }}</span>
+      <span class="badge">Provider: {{ testResponse.chosenProvider }}</span>
+      <span class="badge">Complexity: {{ testResponse.estimatedComplexity }}/10</span>
+    </div>
+    
+    <div class="explanation" *ngIf="testResponse.explanation.length">
+      <h4>Explanation:</h4>
+      <ul>
+        <li *ngFor="let point of testResponse.explanation">{{ point }}</li>
+      </ul>
+    </div>
+
+    <div class="flaky-warnings" *ngIf="testResponse.potentialFlakyPoints.length">
+      <h4>⚠️ Potential Flaky Points:</h4>
+      <ul>
+        <li *ngFor="let point of testResponse.potentialFlakyPoints">{{ point }}</li>
+      </ul>
+    </div>
+
+    <div class="code-block">
+      <pre><code>{{ generatedCode }}</code></pre>
+      <button (click)="copyToClipboard()" class="btn-copy">Copy Code</button>
+    </div>
+  </div>
+
+  <!-- Flaky Test Analysis Section -->
+  <div class="form-section">
+    <h3>Flaky Test Analysis</h3>
+    <form [formGroup]="flakyAnalysisForm" (ngSubmit)="analyzeFlakyTests()">
+      <div class="form-group">
+        <label for="confidenceThreshold">Confidence Threshold (0-1)</label>
+        <input
+          type="range"
+          id="confidenceThreshold"
+          formControlName="confidenceThreshold"
+          min="0"
+          max="1"
+          step="0.05"
+        >
+        <span class="range-value">{{ flakyAnalysisForm.get('confidenceThreshold')?.value }}</span>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" [disabled]="isAnalyzing" class="btn-primary">
+          {{ isAnalyzing ? 'Analyzing...' : 'Analyze Flaky Tests' }}
+        </button>
+        <button type="button" (click)="rawFlakyAnalysisExample()" class="btn-secondary">
+          Show HTTP Example
+        </button>
+      </div>
+    </form>
+
+    <!-- Analysis Results -->
+    <div *ngIf="flakyPredictions" class="result-section">
+      <h4>Flaky Test Predictions</h4>
+      <div class="predictions-grid">
+        <div *ngFor="let prediction of flakyPredictions" class="prediction-card">
+          <h5>{{ prediction.testName }}</h5>
+          <div class="prediction-details">
+            <p>Flaky Score: {{ prediction.flakyScore | number:'1.2-2' }}</p>
+            <p>Confidence: {{ prediction.confidence | number:'1.2-2' }}</p>
+            <div *ngIf="prediction.patterns.length">
+              <p>Patterns:</p>
+              <ul>
+                <li *ngFor="let pattern of prediction.patterns">{{ pattern }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Button -->
+  <div class="form-section">
+    <button (click)="resetForms()" class="btn-danger">Reset All Forms</button>
+  </div>
+</div>

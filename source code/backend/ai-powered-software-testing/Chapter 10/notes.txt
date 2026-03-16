@@ -1,0 +1,11 @@
+
+NuGet packages Required
+-----------------------------
+Microsoft.EntityFrameworkCore.SqlServer - Provides SQL Server support
+
+Microsoft.EntityFrameworkCore.Tools - For migrations
+
+Microsoft.EntityFrameworkCore.Design - For design-time operations
+
+
+Command > Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 8.0.0

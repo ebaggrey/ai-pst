@@ -1,0 +1,630 @@
+<div class="human-review-container">
+  <!-- Header -->
+  <header class="app-header">
+    <h1>Human-in-the-Loop Review System</h1>
+    <div class="session-info" *ngIf="currentSession() as session">
+      <span class="badge">Session: {{ session.id | slice:0:8 }}...</span>
+      <span class="badge" [class]="'status-' + session.status">Status: {{ session.status }}</span>
+      <span class="badge">Progress: {{ sessionProgress() }}%</span>
+    </div>
+    <button class="btn-reset" (click)="resetAll()" title="Reset All">↺ Reset</button>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tab-nav">
+    <a href="#" 
+       [class.active]="activeTab() === 'submit'" 
+       (click)="$event.preventDefault(); setActiveTab('submit')">
+      📝 Submit Review
+    </a>
+    <a href="#" 
+       [class.active]="activeTab() === 'session'" 
+       (click)="$event.preventDefault(); setActiveTab('session')"
+       [class.disabled]="!currentSessionId()">
+      🔍 View Session
+    </a>
+    <a href="#" 
+       [class.active]="activeTab() === 'collaborate'" 
+       (click)="$event.preventDefault(); setActiveTab('collaborate')"
+       [class.disabled]="!isSessionActive()">
+      ✏️ Collaborate
+    </a>
+    <a href="#" 
+       [class.active]="activeTab() === 'clarify'" 
+       (click)="$event.preventDefault(); setActiveTab('clarify')"
+       [class.disabled]="!isSessionActive()">
+      ❓ Ask Clarification
+    </a>
+    <a href="#" 
+       [class.active]="activeTab() === 'judge'" 
+       (click)="$event.preventDefault(); setActiveTab('judge')"
+       [class.disabled]="!isSessionActive()">
+      ⚖️ Provide Judgment
+    </a>
+  </nav>
+
+  <!-- Loading Indicator -->
+  <div class="loading-overlay" *ngIf="isLoading()">
+    <div class="spinner"></div>
+    <p>Processing...</p>
+  </div>
+
+  <!-- Error Display -->
+  <div class="error-message" *ngIf="error() as err" (click)="clearError()">
+    <strong>{{ err.errorCode }}:</strong> {{ err.message }}
+    <p *ngIf="err.suggestion">💡 {{ err.suggestion }}</p>
+    <p *ngIf="err.recoveryActions?.length">Actions: {{ err.recoveryActions?.join(', ') }}</p>
+    <small>{{ formatDate(err.reportedAt) }}</small>
+  </div>
+
+  <!-- Success Message -->
+  <div class="success-message" *ngIf="success() as msg" (click)="clearSuccess()">
+    ✅ {{ msg }}
+  </div>
+
+  <!-- Conflict Error Display -->
+  <div class="conflict-error" *ngIf="conflictError() as conflict">
+    <h3>⚠️ Edit Conflict Detected</h3>
+    <p><strong>Type:</strong> {{ conflict.conflictType }}</p>
+    <p><strong>Suggestion:</strong> {{ conflict.aiMergeSuggestion }}</p>
+    <p><strong>Resolution Options:</strong> {{ conflict.resolutionOptions.join(', ') }}</p>
+    <p><small>Occurred: {{ formatDate(conflict.occurredAt) }}</small></p>
+  </div>
+
+  <!-- Tab Content -->
+  <main class="tab-content">
+
+    <!-- SUBMIT TAB -->
+    <section *ngIf="activeTab() === 'submit'" class="tab-pane">
+      <h2>Submit for Human Review</h2>
+      <form [formGroup]="submitForm" (ngSubmit)="onSubmitForReview()" class="form">
+        
+        <fieldset>
+          <legend>Generated Test</legend>
+          
+          <div class="form-group">
+            <label for="testContent">Test Content *</label>
+            <textarea id="testContent" formControlName="testContent" rows="6"></textarea>
+            <div class="error" *ngIf="submitForm.get('testContent')?.invalid && submitForm.get('testContent')?.touched">
+              Test content is required (min 10 chars)
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="confidenceScore">Confidence Score</label>
+              <input type="number" id="confidenceScore" formControlName="confidenceScore" step="0.01" min="0" max="1">
+            </div>
+
+            <div class="form-group">
+              <label for="testType">Test Type</label>
+              <select id="testType" formControlName="testType">
+                <option value="unit">Unit Test</option>
+                <option value="integration">Integration Test</option>
+                <option value="functional">Functional Test</option>
+                <option value="e2e">End-to-End Test</option>
+                <option value="performance">Performance Test</option>
+                <option value="security">Security Test</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="framework">Framework</label>
+              <input type="text" id="framework" formControlName="framework">
+            </div>
+
+            <div class="form-group">
+              <label for="language">Language</label>
+              <input type="text" id="language" formControlName="language">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Review Context</legend>
+          
+          <div class="form-group">
+            <label for="testPurpose">Test Purpose *</label>
+            <textarea id="testPurpose" formControlName="testPurpose" rows="3"></textarea>
+            <div class="error" *ngIf="submitForm.get('testPurpose')?.invalid && submitForm.get('testPurpose')?.touched">
+              Test purpose is required (min 10 chars)
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="riskLevel">Risk Level</label>
+              <select id="riskLevel" formControlName="riskLevel">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="technicalDomains">Technical Domains (comma separated)</label>
+              <input type="text" id="technicalDomains" formControlName="technicalDomains" placeholder="api, database, security">
+            </div>
+
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select id="priority" formControlName="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Reviewer Guidance</legend>
+          
+          <div class="form-group">
+            <label for="reviewerGuidance">Guidance for Reviewers *</label>
+            <textarea id="reviewerGuidance" formControlName="reviewerGuidance" rows="4"></textarea>
+            <div class="error" *ngIf="submitForm.get('reviewerGuidance')?.invalid && submitForm.get('reviewerGuidance')?.touched">
+              Guidance is required (min 20 chars)
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Submission Metadata</legend>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="submittedBy">Submitted By *</label>
+              <input type="text" id="submittedBy" formControlName="submittedBy">
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="enableRealTimeCollaboration" formControlName="enableRealTimeCollaboration">
+              <label for="enableRealTimeCollaboration">Enable Real-time Collaboration</label>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="autoSuggestImprovements" formControlName="autoSuggestImprovements">
+              <label for="autoSuggestImprovements">Auto-suggest Improvements</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="submitForm.invalid || isLoading()">
+            {{ isLoading() ? 'Submitting...' : 'Submit for Review' }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Submit Response -->
+      <div class="response" *ngIf="submitResponse() as response">
+        <h3>✅ Review Session Created</h3>
+        <div class="response-grid">
+          <div><strong>Session ID:</strong> {{ response.sessionId }}</div>
+          <div><strong>Reviewers:</strong> {{ response.reviewersAssigned.join(', ') }}</div>
+          <div><strong>Est. Time:</strong> {{ estimatedTimeFormatted() }}</div>
+          <div><strong>Status:</strong> {{ response.status || 'active' }}</div>
+          <div><strong>Workspace:</strong> <a href="{{ response.workspaceUrl }}" target="_blank">{{ response.workspaceUrl }}</a></div>
+        </div>
+
+        <h4>Checklist</h4>
+        <ul class="checklist">
+          <li *ngFor="let item of response.reviewChecklist">
+            <strong>{{ item.item }}</strong> - {{ item.description }}
+            <span *ngIf="item.isRequired" class="required">*</span>
+          </li>
+        </ul>
+
+        <h4>Initial Questions</h4>
+        <ul class="questions">
+          <li *ngFor="let q of response.initialQuestions">
+            ❓ {{ q.question }}
+            <span class="badge">{{ q.type }}</span>
+          </li>
+        </ul>
+
+        <button class="btn-view" (click)="setActiveTab('session')">View Full Session</button>
+      </div>
+    </section>
+
+    <!-- SESSION TAB -->
+    <section *ngIf="activeTab() === 'session'" class="tab-pane">
+      <h2>Review Session Details</h2>
+
+      <div class="session-controls">
+        <label for="sessionIdInput">Session ID:</label>
+        <input type="text" id="sessionIdInput" [value]="currentSessionId() || ''" (input)="currentSessionId.set($any($event.target).value)" placeholder="Enter session ID">
+        <button (click)="loadSession(currentSessionId()!)" [disabled]="!currentSessionId() || isLoading()">Load Session</button>
+      </div>
+
+      <div class="response" *ngIf="sessionResponse() as session">
+        <div class="session-header">
+          <h3>Session {{ session.id }}</h3>
+          <span class="badge status-badge" [class]="'status-' + session.status">{{ session.status }}</span>
+        </div>
+
+        <div class="session-details">
+          <div><strong>Created:</strong> {{ formatDate(session.createdAt) }}</div>
+          <div><strong>Last Modified:</strong> {{ formatDate(session.lastModified) || 'N/A' }}</div>
+          <div><strong>Workspace:</strong> <a href="{{ session.workspaceUrl }}" target="_blank">{{ session.workspaceUrl }}</a></div>
+        </div>
+
+        <h4>Context</h4>
+        <div class="context-box">
+          <p><strong>Purpose:</strong> {{ session.context.testPurpose }}</p>
+          <p><strong>Risk Level:</strong> <span class="badge">{{ session.context.riskLevel }}</span></p>
+          <p><strong>Priority:</strong> {{ session.context.priority || 'normal' }}</p>
+          <p *ngIf="session.context.technicalDomains?.length"><strong>Technical Domains:</strong> {{ session.context.technicalDomains?.join(', ') }}</p>
+        </div>
+
+        <h4>AI Analysis</h4>
+        <p class="confidence">{{ session.aiConfidenceStatement }}</p>
+
+        <h4>Areas Needing Judgment</h4>
+        <div class="judgment-areas" *ngIf="safeArray(session.areasNeedingHumanJudgment).length">
+          <div class="area-card" *ngFor="let area of safeArray(session.areasNeedingHumanJudgment)">
+            <h5>{{ area.area }}</h5>
+            <p>{{ area.description }}</p>
+            <p><small>{{ area.guidance }}</small></p>
+          </div>
+        </div>
+
+        <h4>Current Test Content</h4>
+        <pre class="code-block">{{ session.currentContent.content }}</pre>
+
+        <h4>Edit History ({{ safeArray(session.editHistory).length }})</h4>
+        <div class="edit-history" *ngIf="safeArray(session.editHistory).length">
+          <div class="edit-item" *ngFor="let edit of safeArray(session.editHistory)">
+            <div><strong>{{ edit.appliedBy }}</strong> at {{ formatDate(edit.appliedAt) }}</div>
+            <div>Intent: {{ edit.edit.intent }}</div>
+            <div>Impact: {{ edit.impact.impactLevel }}</div>
+          </div>
+        </div>
+
+        <h4>Clarification Threads ({{ safeArray(session.clarificationThreads).length }})</h4>
+        <div class="threads" *ngIf="safeArray(session.clarificationThreads).length">
+          <div class="thread" *ngFor="let thread of safeArray(session.clarificationThreads)">
+            <div *ngFor="let round of safeArray(thread.rounds)" class="round">
+              <div class="question">👤 {{ round.humanQuestion }}</div>
+              <div class="answer">🤖 {{ round.aiResponse.directAnswer }}</div>
+              <small>{{ formatDate(round.askedAt) }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLABORATE TAB -->
+    <section *ngIf="activeTab() === 'collaborate'" class="tab-pane">
+      <h2>Collaborate on Test</h2>
+      <p class="info">Active Session: {{ currentSessionId() }}</p>
+
+      <form [formGroup]="editForm" (ngSubmit)="onCollaborate()" class="form">
+        <fieldset>
+          <legend>Make an Edit</legend>
+          
+          <div class="form-group">
+            <label for="editContent">Edit Content *</label>
+            <textarea id="editContent" formControlName="editContent" rows="6"></textarea>
+            <div class="error" *ngIf="editForm.get('editContent')?.invalid && editForm.get('editContent')?.touched">
+              Edit content is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="editIntent">Edit Intent *</label>
+            <textarea id="editIntent" formControlName="editIntent" rows="2" placeholder="Why are you making this change?"></textarea>
+            <div class="error" *ngIf="editForm.get('editIntent')?.invalid && editForm.get('editIntent')?.touched">
+              Please describe your intent (min 10 chars)
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="editType">Edit Type</label>
+              <select id="editType" formControlName="editType">
+                <option value="modification">Modification</option>
+                <option value="addition">Addition</option>
+                <option value="deletion">Deletion</option>
+                <option value="refactor">Refactor</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="affectedLines">Affected Lines (comma separated)</label>
+              <input type="text" id="affectedLines" formControlName="affectedLines" placeholder="5, 10-15, 20">
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="requestAiAnalysis" formControlName="requestAiAnalysis">
+              <label for="requestAiAnalysis">Request AI Analysis</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="editForm.invalid || isLoading() || !isSessionActive()">
+            {{ isLoading() ? 'Applying...' : 'Apply Edit' }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Collaboration Response -->
+      <div class="response" *ngIf="collaborateResponse() as response">
+        <h3>✅ Edit Applied</h3>
+        
+        <div class="ai-perspective">
+          <h4>AI Perspective</h4>
+          <p><strong>Aligns with intent:</strong> {{ response.aiPerspective.alignsWithIntent ? 'Yes' : 'No' }}</p>
+          <p *ngIf="safeArray(response.aiPerspective.improvements).length"><strong>Improvements:</strong> {{ response.aiPerspective.improvements?.join(', ') }}</p>
+          <p *ngIf="safeArray(response.aiPerspective.potentialIssues).length"><strong>Potential Issues:</strong> {{ response.aiPerspective.potentialIssues?.join(', ') }}</p>
+        </div>
+
+        <div class="impact">
+          <h4>Impact Analysis</h4>
+          <p><strong>Level:</strong> {{ response.impactAnalysis.impactLevel }}</p>
+          <p><strong>Summary:</strong> {{ response.impactAnalysis.summary }}</p>
+          <p *ngIf="safeArray(response.impactAnalysis.affectedAreas).length"><strong>Affected Areas:</strong> {{ response.impactAnalysis.affectedAreas?.join(', ') }}</p>
+        </div>
+
+        <div class="suggestions" *ngIf="safeArray(response.suggestedNextEdits).length">
+          <h4>Suggested Next Edits</h4>
+          <ul>
+            <li *ngFor="let suggestion of safeArray(response.suggestedNextEdits)">
+              <strong>{{ suggestion.suggestion }}</strong> ({{ formatNumber(suggestion.confidence * 100, 0) }}% confidence)
+              <p><small>{{ suggestion.reasoning }}</small></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLARIFY TAB -->
+    <section *ngIf="activeTab() === 'clarify'" class="tab-pane">
+      <h2>Request Clarification</h2>
+      <p class="info">Active Session: {{ currentSessionId() }}</p>
+
+      <form [formGroup]="clarificationForm" (ngSubmit)="onRequestClarification()" class="form">
+        <fieldset>
+          <legend>Ask a Question</legend>
+          
+          <div class="form-group">
+            <label for="humanQuestion">Your Question *</label>
+            <textarea id="humanQuestion" formControlName="humanQuestion" rows="3" placeholder="What would you like to know about the test?"></textarea>
+            <div class="error" *ngIf="clarificationForm.get('humanQuestion')?.invalid && clarificationForm.get('humanQuestion')?.touched">
+              Question must be between 10 and 1000 characters
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="questionType">Question Type</label>
+              <select id="questionType" formControlName="questionType">
+                <option value="general">General</option>
+                <option value="technical">Technical</option>
+                <option value="business">Business</option>
+                <option value="methodology">Methodology</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="urgency">Urgency</label>
+              <select id="urgency" formControlName="urgency">
+                <option value="low">Low</option>
+                <option value="normal">Normal</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contextTags">Context Tags (comma separated)</label>
+              <input type="text" id="contextTags" formControlName="contextTags" placeholder="edge-case, performance, security">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="clarificationForm.invalid || isLoading() || !isSessionActive()">
+            {{ isLoading() ? 'Asking...' : 'Ask Question' }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Clarification Response -->
+      <div class="response" *ngIf="clarifyResponse() as response">
+        <h3>✅ Clarification Received</h3>
+        
+        <div class="qa-box">
+          <div class="question">
+            <strong>You asked:</strong> {{ response.questionAnalysis.isAmbiguous ? '(Ambiguous) ' : '' }}{{ safeArray(response.questionAnalysis.keyTopics).join(', ') }}
+          </div>
+          
+          <div class="answer">
+            <strong>AI Answer:</strong> {{ response.aiAnswer.directAnswer }}
+            <span class="confidence" [class]="
+              response.aiAnswer.confidence > 0.7 ? 'high' : 
+              response.aiAnswer.confidence > 0.4 ? 'medium' : 'low'
+            ">
+              {{ formatNumber(response.aiAnswer.confidence * 100, 0) }}% confident
+            </span>
+          </div>
+
+          <div class="relevance">
+            <strong>Relevance:</strong> {{ formatNumber(response.relevanceScore * 100, 0) }}%
+          </div>
+
+          <div class="alternatives" *ngIf="safeArray(response.aiAnswer.alternatives).length">
+            <strong>Alternative perspectives:</strong>
+            <ul>
+              <li *ngFor="let alt of safeArray(response.aiAnswer.alternatives)">{{ alt }}</li>
+            </ul>
+          </div>
+
+          <div class="assumptions" *ngIf="safeArray(response.aiAnswer.assumptions).length">
+            <strong>Assumptions:</strong>
+            <ul>
+              <li *ngFor="let assumption of safeArray(response.aiAnswer.assumptions)">{{ assumption }}</li>
+            </ul>
+          </div>
+
+          <div class="follow-ups" *ngIf="safeArray(response.suggestedFollowUps).length">
+            <strong>Suggested follow-up questions:</strong>
+            <ul>
+              <li *ngFor="let followUp of safeArray(response.suggestedFollowUps)">{{ followUp }}</li>
+            </ul>
+          </div>
+
+          <div class="rephrase" *ngIf="safeArray(response.rephrasingSuggestions).length">
+            <strong>Rephrasing suggestions:</strong>
+            <ul>
+              <li *ngFor="let rephrase of safeArray(response.rephrasingSuggestions)">{{ rephrase }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JUDGE TAB -->
+    <section *ngIf="activeTab() === 'judge'" class="tab-pane">
+      <h2>Provide Human Judgment</h2>
+      <p class="info">Active Session: {{ currentSessionId() }}</p>
+
+      <form [formGroup]="judgmentForm" (ngSubmit)="onProvideJudgment()" class="form">
+        <fieldset>
+          <legend>Your Judgment</legend>
+          
+          <div class="form-group">
+            <label for="decision">Decision *</label>
+            <select id="decision" formControlName="decision">
+              <option value="approve">Approve</option>
+              <option value="request-revision">Request Revision</option>
+              <option value="reject">Reject</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reasoning">Reasoning *</label>
+            <textarea id="reasoning" formControlName="reasoning" rows="4" placeholder="Explain your judgment..."></textarea>
+            <div class="error" *ngIf="judgmentForm.get('reasoning')?.invalid && judgmentForm.get('reasoning')?.touched">
+              Reasoning is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confidenceInJudgment">Confidence in Judgment</label>
+            <input type="number" id="confidenceInJudgment" formControlName="confidenceInJudgment" step="0.1" min="0" max="1">
+          </div>
+
+          <div class="form-group">
+            <label>Suggested Improvements</label>
+            <div class="array-controls">
+              <button type="button" (click)="addSuggestion()">+ Add Suggestion</button>
+            </div>
+            <div class="array-items">
+              <div *ngFor="let control of suggestedImprovements.controls; let i = index" class="array-item">
+                <input type="text" [formControl]="$any(control)" placeholder="Enter suggestion">
+                <button type="button" (click)="removeSuggestion(i)">✖</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Areas of Concern</label>
+            <div class="array-controls">
+              <button type="button" (click)="addConcern()">+ Add Concern</button>
+            </div>
+            <div class="array-items">
+              <div *ngFor="let control of areasOfConcern.controls; let i = index" class="array-item">
+                <input type="text" [formControl]="$any(control)" placeholder="Enter concern">
+                <button type="button" (click)="removeConcern(i)">✖</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="storeForTraining" formControlName="storeForTraining">
+            <label for="storeForTraining">Store for AI Training</label>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="judgmentForm.invalid || isLoading() || !isSessionActive()">
+            {{ isLoading() ? 'Submitting...' : 'Submit Judgment' }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Judgment Response -->
+      <div class="response" *ngIf="judgeResponse() as response">
+        <h3>✅ Judgment Submitted</h3>
+        
+        <div class="outcome">
+          <h4>Outcome</h4>
+          <p><strong>Decision:</strong> {{ response.outcome.decision }}</p>
+          <p><strong>Summary:</strong> {{ response.outcome.decisionSummary }}</p>
+          <p><strong>Decided at:</strong> {{ formatDate(response.outcome.decidedAt) }}</p>
+        </div>
+
+        <div class="insights" *ngIf="safeArray(response.insights).length">
+          <h4>Insights</h4>
+          <div class="insight-item" *ngFor="let insight of safeArray(response.insights)">
+            <p><strong>{{ insight.category }}:</strong> {{ insight.insight }}</p>
+            <p *ngIf="safeArray(insight.evidence).length">Evidence: {{ insight.evidence?.join(', ') }}</p>
+          </div>
+        </div>
+
+        <div class="next-steps">
+          <h4>Next Steps</h4>
+          <ul>
+            <li *ngFor="let step of response.nextSteps">{{ step }}</li>
+          </ul>
+        </div>
+
+        <div class="feedback">
+          <p>{{ response.feedbackForHuman }}</p>
+        </div>
+
+        <div class="model-updates" *ngIf="safeArray(response.modelUpdatesApplied).length">
+          <h4>Model Updates Applied</h4>
+          <div class="update-item" *ngFor="let update of safeArray(response.modelUpdatesApplied)">
+            <p><strong>{{ update.modelName }}</strong> - {{ update.updateType }}</p>
+            <p>Areas: {{ update.areasUpdated.join(', ') }}</p>
+            <p>Confidence impact: {{ update.confidenceImpact > 0 ? '+' : '' }}{{ formatNumber(update.confidenceImpact * 100, 0) }}%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with API Info -->
+ <!-- Footer with API Info -->
+<footer class="app-footer">
+  <h4>API Endpoints (HTTP Examples)</h4>
+  <div class="api-examples">
+    <div class="api-item">
+      <code>POST /api/human-review/submit</code>
+      <a href="#" (click)="$event.preventDefault(); setActiveTab('submit')">Example Request</a>
+    </div>
+    <div class="api-item">
+      <code>GET /api/human-review/{{ '{' }}sessionId{{ '}' }}</code>
+      <a href="#" (click)="$event.preventDefault(); setActiveTab('session')">Example Request</a>
+    </div>
+    <div class="api-item">
+      <code>POST /api/human-review/{{ '{' }}sessionId{{ '}' }}/collaborate</code>
+      <a href="#" (click)="$event.preventDefault(); setActiveTab('collaborate')">Example Request</a>
+    </div>
+    <div class="api-item">
+      <code>POST /api/human-review/{{ '{' }}sessionId{{ '}' }}/clarify</code>
+      <a href="#" (click)="$event.preventDefault(); setActiveTab('clarify')">Example Request</a>
+    </div>
+    <div class="api-item">
+      <code>POST /api/human-review/{{ '{' }}sessionId{{ '}' }}/judge</code>
+      <a href="#" (click)="$event.preventDefault(); setActiveTab('judge')">Example Request</a>
+    </div>
+  </div>
+</footer>
+</div>

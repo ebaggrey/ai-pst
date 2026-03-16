@@ -1,0 +1,278 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.loading {
+  color: #666;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.section {
+  margin: 30px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.section h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.form {
+  margin: 15px 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group.checkbox label {
+  display: inline;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+.examples-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.example-item {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.btn-remove {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-remove:hover {
+  background-color: #c82333;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0069d9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.readonly-input {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.result-card {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #28a745;
+  border-radius: 4px;
+  background-color: #f0fff0;
+}
+
+.code-block {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.search-group {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.search-group select {
+  width: 150px;
+}
+
+.search-group input {
+  flex: 1;
+}
+
+.results-list {
+  margin-top: 20px;
+}
+
+.result-item {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.text-small {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.health-card {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: #f0f8ff;
+}
+
+.healthy {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.endpoints-section {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.endpoints-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.endpoints-section li {
+  padding: 5px 0;
+  font-family: monospace;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.endpoints-section li:last-child {
+  border-bottom: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}

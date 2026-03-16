@@ -1,0 +1,427 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Chapter 1 - Testing Landscape Analyzer API",
+    "description": "API for analyzing application testing landscapes and generating intelligent test strategies",
+    "contact": {
+      "name": "QA Team",
+      "email": "qa@chapter1.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Chapter 1"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/error": {
+      "get": {
+        "tags": [
+          "Chapter 1"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/landscape/analyze": {
+      "post": {
+        "tags": [
+          "LandscapeAnalysis"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LandscapeTestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/landscape/analysis/{id}": {
+      "get": {
+        "tags": [
+          "LandscapeAnalysis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/landscape/health": {
+      "get": {
+        "tags": [
+          "LandscapeAnalysis"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationProfile": {
+        "required": [
+          "ArchitectureType",
+          "CriticalUserJourneys",
+          "ExpectedUsers",
+          "Name"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
+          },
+          "ArchitectureType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "FrontendFrameworks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "BackendServicesCount": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "BackendServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BackendService"
+            },
+            "nullable": true
+          },
+          "DataSources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "ExpectedUsers": {
+            "$ref": "#/components/schemas/UserScale"
+          },
+          "CriticalUserJourneys": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TechDebtAreas": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "DeploymentEnvironment": {
+            "type": "string",
+            "nullable": true
+          },
+          "ComplianceRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "AvailabilityRequirement": {
+            "type": "number",
+            "format": "double"
+          },
+          "PerformanceSLAs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "SecurityRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BackendService": {
+        "required": [
+          "Name",
+          "Technology"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "Technology": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "Endpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "HasDatabase": {
+            "type": "boolean"
+          },
+          "RequestRatePerSecond": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "HealthCheckEndpoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "Version": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsCritical": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LandscapeTestRequest": {
+        "required": [
+          "ApplicationProfile",
+          "TestingFocus"
+        ],
+        "type": "object",
+        "properties": {
+          "ApplicationProfile": {
+            "$ref": "#/components/schemas/ApplicationProfile"
+          },
+          "TestingFocus": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "RiskAssessment": {
+            "$ref": "#/components/schemas/RiskAssessment"
+          },
+          "PromptVersion": {
+            "pattern": "^\\d+\\.\\d+$",
+            "type": "string",
+            "nullable": true
+          },
+          "RequestedArtifacts": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "CustomParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "IncludeDetailedAnalysis": {
+            "type": "boolean"
+          },
+          "AnalysisDepth": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxRecommendationsPerArea": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskAssessment": {
+        "type": "object",
+        "properties": {
+          "Criticality": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "ComplianceRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "DataSensitivity": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "RiskFactors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskFactor"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskFactor": {
+        "type": "object",
+        "properties": {
+          "Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "Likelihood": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "Impact": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserScale": {
+        "enum": [
+          "Small",
+          "Medium",
+          "Large",
+          "Enterprise"
+        ],
+        "type": "string"
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "format": "date"
+          },
+          "TemperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TemperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "Summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

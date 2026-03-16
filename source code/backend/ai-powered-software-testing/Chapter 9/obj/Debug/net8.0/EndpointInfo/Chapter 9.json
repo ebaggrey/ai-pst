@@ -1,0 +1,2354 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lean Testing API",
+    "description": "API for Lean Testing principles and optimization",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/lean-testing/prioritize": {
+      "post": {
+        "tags": [
+          "LeanTesting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingPriorityResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingPriorityResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestingPriorityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lean-testing/minimal-coverage": {
+      "post": {
+        "tags": [
+          "LeanTesting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverageRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverageRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoverageResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoverageResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoverageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lean-testing/automation-threshold": {
+      "post": {
+        "tags": [
+          "LeanTesting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutomationDecisionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutomationDecisionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutomationDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationDecisionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationDecisionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationDecisionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lean-testing/optimize-maintenance": {
+      "post": {
+        "tags": [
+          "LeanTesting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaintenanceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaintenanceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaintenanceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceOptimizationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceOptimizationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceOptimizationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lean-testing/measure-roi": {
+      "post": {
+        "tags": [
+          "LeanTesting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ROIRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ROIRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ROIRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ROIAnalysisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ROIAnalysisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ROIAnalysisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeanErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlertThreshold": {
+        "type": "object",
+        "properties": {
+          "metric": {
+            "type": "string",
+            "nullable": true
+          },
+          "warningThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "criticalThreshold": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlternativePrioritization": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizedFeature"
+            },
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationCost": {
+        "type": "object",
+        "properties": {
+          "initialCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintenanceCostPerMonth": {
+            "type": "number",
+            "format": "double"
+          },
+          "infrastructureCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "trainingCost": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationDecision": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "rationale": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "factors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DecisionFactor"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationDecisionRequest": {
+        "type": "object",
+        "properties": {
+          "testScenario": {
+            "$ref": "#/components/schemas/TestScenario"
+          },
+          "automationCost": {
+            "$ref": "#/components/schemas/AutomationCost"
+          },
+          "manualCost": {
+            "$ref": "#/components/schemas/ManualCost"
+          },
+          "roiThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "decisionFactors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DecisionFactor"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationDecisionResponse": {
+        "type": "object",
+        "properties": {
+          "decisionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "testScenario": {
+            "$ref": "#/components/schemas/TestScenario"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/AutomationDecision"
+          },
+          "costAnalysis": {
+            "$ref": "#/components/schemas/CostAnalysis"
+          },
+          "roi": {
+            "$ref": "#/components/schemas/ROIAnalysis"
+          },
+          "implementationPlan": {
+            "$ref": "#/components/schemas/AutomationPlan"
+          },
+          "monitoringPlan": {
+            "$ref": "#/components/schemas/MonitoringPlan"
+          },
+          "alternativeOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AutomationOption"
+            },
+            "nullable": true
+          },
+          "reviewTimeline": {
+            "$ref": "#/components/schemas/Timeline"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationOption": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "decision": {
+            "$ref": "#/components/schemas/AutomationDecision"
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutomationPlan": {
+        "type": "object",
+        "properties": {
+          "phases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceRequirement"
+            },
+            "nullable": true
+          },
+          "timeline": {
+            "$ref": "#/components/schemas/Timeline"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BenchmarkComparison": {
+        "type": "object",
+        "properties": {
+          "industryAverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "bestInClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "percentile": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangeImpact": {
+        "type": "object",
+        "properties": {
+          "changedComponents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "affectedFeatures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "impactRadius": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfidenceScore": {
+        "type": "object",
+        "properties": {
+          "featureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostAnalysis": {
+        "type": "object",
+        "properties": {
+          "totalAutomationCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalManualCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "breakEvenPoint": {
+            "type": "number",
+            "format": "double"
+          },
+          "automationBreakdown": {
+            "$ref": "#/components/schemas/CostBreakdown"
+          },
+          "manualBreakdown": {
+            "$ref": "#/components/schemas/CostBreakdown"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostBenefitItem": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostBreakdown": {
+        "type": "object",
+        "properties": {
+          "initial": {
+            "type": "number",
+            "format": "double"
+          },
+          "recurring": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintenance": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CostOfDelay": {
+        "type": "object",
+        "properties": {
+          "dailyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "delayType": {
+            "type": "string",
+            "nullable": true
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoverageConstraints": {
+        "type": "object",
+        "properties": {
+          "maxTestCases": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxExecutionTimeMinutes": {
+            "type": "number",
+            "format": "double"
+          },
+          "requiredCoverageTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoverageMetrics": {
+        "type": "object",
+        "properties": {
+          "functionalCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "valueCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "requirementCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "coverageGaps": {
+            "$ref": "#/components/schemas/GapAnalysis"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoverageRequest": {
+        "type": "object",
+        "properties": {
+          "feature": {
+            "$ref": "#/components/schemas/Feature"
+          },
+          "confidenceTarget": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskProfile": {
+            "$ref": "#/components/schemas/RiskProfile"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/CoverageConstraints"
+          },
+          "optimizationGoal": {
+            "$ref": "#/components/schemas/OptimizationGoal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoverageResponse": {
+        "type": "object",
+        "properties": {
+          "suiteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "feature": {
+            "$ref": "#/components/schemas/Feature"
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCase"
+            },
+            "nullable": true
+          },
+          "coverageMetrics": {
+            "$ref": "#/components/schemas/CoverageMetrics"
+          },
+          "executionPlan": {
+            "$ref": "#/components/schemas/ExecutionPlan"
+          },
+          "maintenanceGuidance": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "confidenceAchieved": {
+            "type": "number",
+            "format": "double"
+          },
+          "efficiencyScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "simplificationOpportunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimplificationOpportunity"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecisionFactor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutionPlan": {
+        "type": "object",
+        "properties": {
+          "executions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestExecution"
+            },
+            "nullable": true
+          },
+          "totalDurationMinutes": {
+            "type": "number",
+            "format": "double"
+          },
+          "parallelizationStrategy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpectedROI": {
+        "type": "object",
+        "properties": {
+          "expectedValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "expectedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "ratio": {
+            "type": "number",
+            "format": "double"
+          },
+          "expectedPaybackPeriod": {
+            "type": "string",
+            "format": "date-span"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Feature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskLevel": {
+            "type": "number",
+            "format": "double"
+          },
+          "implementationComplexity": {
+            "type": "number",
+            "format": "double"
+          },
+          "testingEffort": {
+            "type": "number",
+            "format": "double"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GapAnalysis": {
+        "type": "object",
+        "properties": {
+          "untestedRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "lowCoverageAreas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationGuidance": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImprovementPlan": {
+        "type": "object",
+        "properties": {
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "timeline": {
+            "$ref": "#/components/schemas/Timeline"
+          },
+          "successCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Insight": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntangibleAnalysis": {
+        "type": "object",
+        "properties": {
+          "qualityScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "teamMorale": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerSatisfaction": {
+            "type": "number",
+            "format": "double"
+          },
+          "qualitativeBenefits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeanDiagnosticData": {
+        "type": "object",
+        "properties": {
+          "constraintAnalysis": {
+            "nullable": true
+          },
+          "suggestedAdjustments": {
+            "nullable": true
+          },
+          "coverageGapAnalysis": {
+            "nullable": true
+          },
+          "constraintImpact": {
+            "nullable": true
+          },
+          "missingCostData": {
+            "nullable": true
+          },
+          "estimationChallenges": {
+            "nullable": true
+          },
+          "violatedRules": {
+            "nullable": true
+          },
+          "affectedTests": {
+            "nullable": true
+          },
+          "dataGaps": {
+            "nullable": true
+          },
+          "calculationLimitations": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeanErrorResponse": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "leanPrincipleViolated": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoverySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fallbackSuggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosticData": {
+            "$ref": "#/components/schemas/LeanDiagnosticData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceOptimizationResponse": {
+        "type": "object",
+        "properties": {
+          "optimizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalTests": {
+            "$ref": "#/components/schemas/TestSuite"
+          },
+          "optimization": {
+            "$ref": "#/components/schemas/OptimizationResult"
+          },
+          "savings": {
+            "$ref": "#/components/schemas/MaintenanceSavings"
+          },
+          "implementationGuidance": {
+            "$ref": "#/components/schemas/ImplementationGuidance"
+          },
+          "preservationValidation": {
+            "$ref": "#/components/schemas/ValidationResult"
+          },
+          "riskAssessment": {
+            "$ref": "#/components/schemas/RiskAssessment"
+          },
+          "monitoringPlan": {
+            "$ref": "#/components/schemas/MonitoringPlan"
+          },
+          "continuousImprovement": {
+            "$ref": "#/components/schemas/ImprovementPlan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceRequest": {
+        "type": "object",
+        "properties": {
+          "existingTests": {
+            "$ref": "#/components/schemas/TestSuite"
+          },
+          "changeImpact": {
+            "$ref": "#/components/schemas/ChangeImpact"
+          },
+          "optimizationStrategy": {
+            "$ref": "#/components/schemas/OptimizationStrategy"
+          },
+          "allowedActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "preservationRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreservationRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceSavings": {
+        "type": "object",
+        "properties": {
+          "maintenanceReduction": {
+            "type": "number",
+            "format": "double"
+          },
+          "costSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "timeSavingsHours": {
+            "type": "number",
+            "format": "double"
+          },
+          "breakdown": {
+            "$ref": "#/components/schemas/SavingsBreakdown"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManualCost": {
+        "type": "object",
+        "properties": {
+          "executionCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "setupCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "reportingCost": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricDefinition": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "frequency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Milestone": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliverables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MitigationStrategy": {
+        "type": "object",
+        "properties": {
+          "risk": {
+            "type": "string",
+            "nullable": true
+          },
+          "strategy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlan": {
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDefinition"
+            },
+            "nullable": true
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertThreshold"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "$ref": "#/components/schemas/ReviewSchedule"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationAction": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "affectedTests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationGoal": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "OptimizationResult": {
+        "type": "object",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizationAction"
+            },
+            "nullable": true
+          },
+          "optimizedSuite": {
+            "$ref": "#/components/schemas/TestSuite"
+          },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationStrategy": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "OptimizedFeature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskLevel": {
+            "type": "number",
+            "format": "double"
+          },
+          "implementationComplexity": {
+            "type": "number",
+            "format": "double"
+          },
+          "testingEffort": {
+            "type": "number",
+            "format": "double"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priorityScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "expectedValuePerHour": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskAdjustedValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "optimizationRationale": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OverallROI": {
+        "type": "object",
+        "properties": {
+          "roiValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "paybackPeriod": {
+            "type": "number",
+            "format": "double"
+          },
+          "netPresentValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "confidence": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreservationRule": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "mustPreserve": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrioritizationMethod": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "PriorityRequest": {
+        "type": "object",
+        "properties": {
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feature"
+            },
+            "nullable": true
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/TestingConstraints"
+          },
+          "prioritizationMethod": {
+            "$ref": "#/components/schemas/PrioritizationMethod"
+          },
+          "maxTestingBudget": {
+            "type": "number",
+            "format": "double"
+          },
+          "costOfDelay": {
+            "$ref": "#/components/schemas/CostOfDelay"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ROIAnalysis": {
+        "type": "object",
+        "properties": {
+          "roiValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "paybackPeriod": {
+            "type": "number",
+            "format": "double"
+          },
+          "netPresentValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ROIAnalysisResponse": {
+        "type": "object",
+        "properties": {
+          "analysisId": {
+            "type": "string",
+            "nullable": true
+          },
+          "measurementPeriod": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "tangibleAnalysis": {
+            "$ref": "#/components/schemas/TangibleAnalysis"
+          },
+          "intangibleAnalysis": {
+            "$ref": "#/components/schemas/IntangibleAnalysis"
+          },
+          "overallROI": {
+            "$ref": "#/components/schemas/OverallROI"
+          },
+          "insights": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Insight"
+            },
+            "nullable": true
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "nullable": true
+          },
+          "benchmarkComparison": {
+            "$ref": "#/components/schemas/BenchmarkComparison"
+          },
+          "forecasting": {
+            "$ref": "#/components/schemas/ROIForecast"
+          },
+          "visualizationData": {
+            "$ref": "#/components/schemas/VisualizationData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ROIForecast": {
+        "type": "object",
+        "properties": {
+          "projectedROI": {
+            "type": "number",
+            "format": "double"
+          },
+          "trends": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ROIRequest": {
+        "type": "object",
+        "properties": {
+          "testInvestments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestInvestment"
+            },
+            "nullable": true
+          },
+          "outcomes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestOutcome"
+            },
+            "nullable": true
+          },
+          "measurementPeriod": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "costCategories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "valueCategories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "includeIntangibles": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Recommendation": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedImpact": {
+            "type": "number",
+            "format": "double"
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceAllocation": {
+        "type": "object",
+        "properties": {
+          "allocations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "timeline": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceRequirement": {
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "duration": {
+            "type": "string",
+            "format": "date-span"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewSchedule": {
+        "type": "object",
+        "properties": {
+          "frequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsible": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskAssessment": {
+        "type": "object",
+        "properties": {
+          "overallRiskScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskFactors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskFactor"
+            },
+            "nullable": true
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MitigationStrategy"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskFactor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "probability": {
+            "type": "number",
+            "format": "double"
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskProfile": {
+        "type": "object",
+        "properties": {
+          "highRiskAreas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "criticalFlows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "riskTolerance": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SavingsBreakdown": {
+        "type": "object",
+        "properties": {
+          "executionSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintenanceSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "reportingSavings": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SimplificationOpportunity": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "impactScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "implementation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TangibleAnalysis": {
+        "type": "object",
+        "properties": {
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalBenefit": {
+            "type": "number",
+            "format": "double"
+          },
+          "roi": {
+            "type": "number",
+            "format": "double"
+          },
+          "costBreakdown": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CostBenefitItem"
+            },
+            "nullable": true
+          },
+          "benefitBreakdown": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CostBenefitItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestCase": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "coveredRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "executionFrequency": {
+            "type": "number",
+            "format": "double"
+          },
+          "lastExecution": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "failureRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintenanceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "businessCriticality": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestExecution": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "nullable": true
+          },
+          "scheduledTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "environment": {
+            "type": "string",
+            "nullable": true
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestInvestment": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestOutcome": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestScenario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "executionFrequency": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageDurationMinutes": {
+            "type": "number",
+            "format": "double"
+          },
+          "testDataRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestSuite": {
+        "type": "object",
+        "properties": {
+          "suiteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCase"
+            },
+            "nullable": true
+          },
+          "applicationArea": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestingConstraints": {
+        "type": "object",
+        "properties": {
+          "maxTimeHours": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxParallelTests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requiredEnvironments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "complianceRules": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestingPriorityResponse": {
+        "type": "object",
+        "properties": {
+          "prioritizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptimizedFeature"
+            },
+            "nullable": true
+          },
+          "reasoning": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "expectedROI": {
+            "$ref": "#/components/schemas/ExpectedROI"
+          },
+          "confidenceScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConfidenceScore"
+            },
+            "nullable": true
+          },
+          "tradeOffs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TradeOff"
+            },
+            "nullable": true
+          },
+          "nextBestAlternatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlternativePrioritization"
+            },
+            "nullable": true
+          },
+          "resourceAllocation": {
+            "$ref": "#/components/schemas/ResourceAllocation"
+          },
+          "riskAssessment": {
+            "$ref": "#/components/schemas/RiskAssessment"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Timeline": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "milestones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Milestone"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradeOff": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommended": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationResult": {
+        "type": "object",
+        "properties": {
+          "isValid": {
+            "type": "boolean"
+          },
+          "violations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VisualizationData": {
+        "type": "object",
+        "properties": {
+          "timeSeries": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
+          "distribution": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "chartConfig": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

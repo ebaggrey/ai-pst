@@ -1,0 +1,227 @@
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>AI Testing Dashboard</h1>
+    <div>
+      <button (click)="clearResults()" [disabled]="isLoading()">Clear</button>
+      <button (click)="openApiDocs()">Docs</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading()" class="loading">
+    Loading...
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="hasError()" class="error">
+    <p><strong>Error:</strong> {{ error()?.diagnosticInfo?.errorMessage }}</p>
+    <p>Code: {{ error()?.diagnosticInfo?.errorCode }}</p>
+  </div>
+
+  <!-- API Links -->
+  <div class="api-links">
+    <ng-container *ngFor="let endpoint of apiEndpoints; let last = last">
+      <a [href]="getFullUrl(endpoint.path)" target="_blank" rel="noopener">POST {{ endpoint.path }}</a>
+      <span *ngIf="!last" class="separator"> | </span>
+    </ng-container>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button (click)="setActiveTab('capability')" [class.active]="activeTab() === 'capability'">Capability</button>
+    <button (click)="setActiveTab('robustness')" [class.active]="activeTab() === 'robustness'">Robustness</button>
+    <button (click)="setActiveTab('bias')" [class.active]="activeTab() === 'bias'">Bias</button>
+    <button (click)="setActiveTab('hallucination')" [class.active]="activeTab() === 'hallucination'">Hallucination</button>
+    <button (click)="setActiveTab('drift')" [class.active]="activeTab() === 'drift'">Drift</button>
+  </div>
+
+  <!-- Capability Tab -->
+  <div *ngIf="activeTab() === 'capability'" class="section">
+    <h3>Capability Assessment</h3>
+    <p class="endpoint-hint">
+      POST <a [href]="getFullUrl('/assess-capabilities')" target="_blank" rel="noopener">{{ getFullUrl('/assess-capabilities') }}</a>
+    </p>
+    
+    <form (ngSubmit)="assessCapabilities()">
+      <div class="form-group">
+        <label>Provider:</label>
+        <select [(ngModel)]="capabilityRequest.provider" name="provider">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+          <option value="google">Google</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Rigor Level:</label>
+        <select [(ngModel)]="capabilityRequest.rigorLevel" name="rigorLevel">
+          <option value="standard">Standard</option>
+          <option value="thorough">Thorough</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Model:</label>
+        <input [(ngModel)]="capabilityRequest.modelName" name="modelName" type="text">
+      </div>
+      
+      <div class="form-group">
+        <label>Dimensions:</label>
+        <input [(ngModel)]="capabilityDimensions" name="dimensions" type="text" placeholder="accuracy,speed">
+      </div>
+      
+      <button type="submit" [disabled]="loadingCapability()">Run Assessment</button>
+    </form>
+
+    <!-- Results -->
+    <div *ngIf="capabilityReport() as report" class="results">
+      <h4>Results</h4>
+      <p>Score: {{ report.overallScore }}/100</p>
+      <p>Provider: {{ report.provider }}</p>
+      <p>Model: {{ report.modelName }}</p>
+      
+      <div *ngIf="report.recommendations.length">
+        <p>Recommendations:</p>
+        <ul>
+          <li *ngFor="let rec of report.recommendations; trackBy: trackByArea">
+            {{ rec.suggestion }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Robustness Tab -->
+  <div *ngIf="activeTab() === 'robustness'" class="section">
+    <h3>Robustness Testing</h3>
+    <p class="endpoint-hint">
+      POST <a [href]="getFullUrl('/test-robustness')" target="_blank" rel="noopener">{{ getFullUrl('/test-robustness') }}</a>
+    </p>
+    
+    <form (ngSubmit)="testRobustness()">
+      <div class="form-group">
+        <label>Base Prompt:</label>
+        <textarea [(ngModel)]="robustnessRequest.basePrompt" name="basePrompt" rows="2"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Variations (one per line):</label>
+        <textarea [(ngModel)]="robustnessVariations" name="variations" rows="2"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Number of Runs:</label>
+        <input [(ngModel)]="robustnessRequest.numberOfRuns" name="numberOfRuns" type="number">
+      </div>
+      
+      <button type="submit" [disabled]="loadingRobustness()">Test Robustness</button>
+    </form>
+
+    <div *ngIf="robustnessReport() as report" class="results">
+      <h4>Results</h4>
+      <p>Average Consistency: {{ report.averageConsistencyScore }}/100</p>
+    </div>
+  </div>
+
+  <!-- Bias Tab -->
+  <div *ngIf="activeTab() === 'bias'" class="section">
+    <h3>Bias Detection</h3>
+    <p class="endpoint-hint">
+      POST <a [href]="getFullUrl('/detect-bias')" target="_blank" rel="noopener">{{ getFullUrl('/detect-bias') }}</a>
+    </p>
+    
+    <form (ngSubmit)="detectBias()">
+      <div class="form-group">
+        <label>Context Areas:</label>
+        <input [(ngModel)]="biasContextAreas" name="contextAreas" type="text" placeholder="hiring,lending">
+      </div>
+      
+      <div class="form-group">
+        <label>Sensitivity: {{ biasRequest.sensitivityThreshold }}</label>
+        <input [(ngModel)]="biasRequest.sensitivityThreshold" name="sensitivityThreshold" type="range" min="0.5" max="0.95" step="0.05">
+      </div>
+      
+      <button type="submit" [disabled]="loadingBias()">Detect Bias</button>
+    </form>
+
+    <div *ngIf="biasReport() as report" class="results">
+      <h4>Results</h4>
+      <p>Bias Score: {{ report.overallBiasScore }}/100</p>
+    </div>
+  </div>
+
+  <!-- Hallucination Tab -->
+  <div *ngIf="activeTab() === 'hallucination'" class="section">
+    <h3>Hallucination Test</h3>
+    <p class="endpoint-hint">
+      POST <a [href]="getFullUrl('/test-hallucinations')" target="_blank" rel="noopener">{{ getFullUrl('/test-hallucinations') }}</a>
+    </p>
+    
+    <form (ngSubmit)="testHallucinations()">
+      <div class="form-group">
+        <label>Provider:</label>
+        <select [(ngModel)]="hallucinationRequest.provider" name="provider">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Known Facts (one per line):</label>
+        <textarea [(ngModel)]="hallucinationFacts" name="knownFacts" rows="2"></textarea>
+      </div>
+      
+      <button type="submit" [disabled]="loadingHallucination()">Test Hallucinations</button>
+    </form>
+
+    <div *ngIf="hallucinationReport() as report" class="results">
+      <h4>Results</h4>
+      <p>Hallucination Rate: {{ report.hallucinationRate | percent }}</p>
+      <p>Found: {{ report.hallucinationCount }}</p>
+    </div>
+  </div>
+
+  <!-- Drift Tab -->
+  <div *ngIf="activeTab() === 'drift'" class="section">
+    <h3>Drift Monitoring</h3>
+    <p class="endpoint-hint">
+      POST <a [href]="getFullUrl('/monitor-drift')" target="_blank" rel="noopener">{{ getFullUrl('/monitor-drift') }}</a>
+    </p>
+    
+    <form (ngSubmit)="monitorDrift()">
+      <div class="form-group">
+        <label>Timeframe:</label>
+        <select [(ngModel)]="driftRequest.timeframe" name="timeframe">
+          <option value="7d">7 days</option>
+          <option value="30d">30 days</option>
+          <option value="90d">90 days</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Metrics:</label>
+        <input [(ngModel)]="driftMetrics" name="metricsToMonitor" type="text" placeholder="accuracy,latency">
+      </div>
+      
+      <div class="form-group">
+        <label>Threshold: {{ driftRequest.driftThreshold }}</label>
+        <input [(ngModel)]="driftRequest.driftThreshold" name="driftThreshold" type="range" min="0.01" max="1" step="0.01">
+      </div>
+      
+      <button type="submit" [disabled]="loadingDrift()">Monitor Drift</button>
+    </form>
+
+    <div *ngIf="driftReport() as report" class="results">
+      <h4>Results</h4>
+      <p>Drift Significance: {{ report.driftSignificance | percent }}</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="https://angular.io" target="_blank" rel="noopener">Angular</a> |
+    <a href="https://rxjs.dev" target="_blank" rel="noopener">RxJS</a>
+    <p>© 2024 AI Testing</p>
+  </div>
+</div>

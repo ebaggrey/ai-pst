@@ -1,0 +1,6 @@
+@Chapter2_Ext_HostAddress = http://localhost:5209
+
+GET {{Chapter2_Ext_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,551 @@
+<!-- src/app/components/pipeline-cookbook/pipeline-cookbook.component.html -->
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>Pipeline Cookbook API Tester</h1>
+        <p class="description">Test all pipeline management endpoints with example requests</p>
+    </div>
+
+    <!-- Endpoint Selection -->
+    <div class="endpoint-selector">
+        <h2>Select Endpoint</h2>
+        <div class="button-group">
+            <button *ngFor="let endpoint of ['generate-pipeline', 'diagnose-failure', 'optimize-performance', 'predict-issues', 'adapt-to-change']" 
+                    [class.active]="selectedEndpoint() === endpoint"
+                    (click)="setEndpoint(endpoint)"
+                    class="endpoint-btn">
+                {{ endpoint | titlecase }}
+            </button>
+        </div>
+        <p class="endpoint-description">{{ getEndpointDescription() }}</p>
+    </div>
+
+    <!-- Request Forms -->
+    <div class="request-section">
+        <h2>Request</h2>
+        
+        <!-- Generate Pipeline Form -->
+        <div *ngIf="selectedEndpoint() === 'generate-pipeline'">
+            <form [formGroup]="generatePipelineForm" (ngSubmit)="onSubmitGeneratePipeline()" class="request-form">
+                <fieldset>
+                    <legend>Codebase Analysis</legend>
+                    <div formGroupName="codebaseAnalysis">
+                        <div class="form-group">
+                            <label>Language:</label>
+                            <input type="text" formControlName="language" placeholder="e.g., C#">
+                            <div *ngIf="generatePipelineForm.get('codebaseAnalysis.language')?.invalid && generatePipelineForm.get('codebaseAnalysis.language')?.touched" class="error-message">
+                                Language is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Test Coverage (0-1):</label>
+                            <input type="number" formControlName="testCoverage" step="0.01" min="0" max="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Lines:</label>
+                            <input type="number" formControlName="totalLines">
+                        </div>
+                        <div class="form-group">
+                            <label>Dependencies (comma-separated):</label>
+                            <input type="text" [value]="generatePipelineForm.get('codebaseAnalysis.dependencies')?.value?.join(', ')" 
+                                   (input)="onDependenciesInput($event)" placeholder="e.g., Microsoft.NET.Sdk, EntityFrameworkCore">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Pipeline Constraints</legend>
+                    <div formGroupName="constraints">
+                        <div class="form-group">
+                            <label>Max Duration:</label>
+                            <input type="text" formControlName="maxDuration" placeholder="e.g., 15 minutes">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Cost Per Run ($):</label>
+                            <input type="number" formControlName="maxCostPerRun" step="0.01">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Team Practices</legend>
+                    <div formGroupName="teamPractices">
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="codeReviews">
+                                Code Reviews
+                            </label>
+                        </div>
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="automatedTesting">
+                                Automated Testing
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Deployment Strategy (comma-separated):</label>
+                            <input type="text" [value]="generatePipelineForm.get('teamPractices.deploymentStrategy')?.value?.join(', ')" 
+                                   (input)="onDeploymentStrategyInput($event)" placeholder="e.g., blue-green, canary">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Optimization Focus</legend>
+                    <div formGroupName="optimizationFocus">
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="speed">
+                                Speed
+                            </label>
+                        </div>
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="reliability">
+                                Reliability
+                            </label>
+                        </div>
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="cost">
+                                Cost
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" [disabled]="generatePipelineForm.invalid || isLoading()">
+                        <span *ngIf="!isLoading()">Send Request</span>
+                        <span *ngIf="isLoading()">Sending...</span>
+                    </button>
+                    <button type="button" (click)="clearResponse()">Clear Response</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Diagnose Failure Form -->
+        <div *ngIf="selectedEndpoint() === 'diagnose-failure'">
+            <form [formGroup]="diagnoseFailureForm" (ngSubmit)="onSubmitDiagnoseFailure()" class="request-form">
+                <fieldset>
+                    <legend>Failure Logs</legend>
+                    <div formGroupName="failureLogs">
+                        <div class="form-group">
+                            <label>Raw Logs:</label>
+                            <textarea formControlName="rawLogs" rows="5" 
+                                      placeholder="Paste your failure logs here..."></textarea>
+                            <div *ngIf="diagnoseFailureForm.get('failureLogs.rawLogs')?.invalid && diagnoseFailureForm.get('failureLogs.rawLogs')?.touched" class="error-message">
+                                Raw logs are required
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Recent Changes</legend>
+                    <div formGroupName="recentChanges">
+                        <div formArrayName="changes">
+                            <div *ngFor="let change of getChangesArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                                <h4>Change #{{ i + 1 }}</h4>
+                                <div class="form-group">
+                                    <label>Change ID:</label>
+                                    <input type="text" formControlName="id" placeholder="e.g., change-001">
+                                </div>
+                                <div class="form-group">
+                                    <label>Change Type:</label>
+                                    <input type="text" formControlName="type" placeholder="e.g., dependency">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description:</label>
+                                    <input type="text" formControlName="description" placeholder="Describe the change">
+                                </div>
+                                <button *ngIf="getChangesArray().length > 1" type="button" class="remove-btn" (click)="removeChange(i)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-btn" (click)="addChange()">+ Add Change</button>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Diagnosis Settings</legend>
+                    <div class="form-group">
+                        <label>Diagnosis Depth:</label>
+                        <select formControlName="diagnosisDepth">
+                            <option *ngFor="let option of diagnosisDepthOptions" [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            <input type="checkbox" formControlName="includeRemediation">
+                            Include Remediation Steps
+                        </label>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            <input type="checkbox" formControlName="preventionStrategies">
+                            Include Prevention Strategies
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset formGroupName="pipelineContext">
+                    <legend>Pipeline Context</legend>
+                    <div class="form-group">
+                        <label>Pipeline ID:</label>
+                        <input type="text" formControlName="pipelineId" placeholder="e.g., pipeline-123">
+                    </div>
+                    <div class="form-group">
+                        <label>Stage:</label>
+                        <input type="text" formControlName="stage" placeholder="e.g., build">
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" [disabled]="diagnoseFailureForm.invalid || isLoading()">
+                        <span *ngIf="!isLoading()">Send Request</span>
+                        <span *ngIf="isLoading()">Sending...</span>
+                    </button>
+                    <button type="button" (click)="clearResponse()">Clear Response</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Optimize Performance Form -->
+        <div *ngIf="selectedEndpoint() === 'optimize-performance'">
+            <form [formGroup]="optimizePerformanceForm" (ngSubmit)="onSubmitOptimizePerformance()" class="request-form">
+                <fieldset>
+                    <legend>Current Metrics</legend>
+                    <div formGroupName="currentMetrics">
+                        <div class="form-group">
+                            <label>Average Duration (ISO 8601):</label>
+                            <input type="text" formControlName="averageDuration" placeholder="e.g., PT30M">
+                            <div *ngIf="optimizePerformanceForm.get('currentMetrics.averageDuration')?.invalid && optimizePerformanceForm.get('currentMetrics.averageDuration')?.touched" class="error-message">
+                                Average duration is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Success Rate (0-1):</label>
+                            <input type="number" formControlName="successRate" step="0.01" min="0" max="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Resource Utilization (0-1):</label>
+                            <input type="number" formControlName="resourceUtilization" step="0.01" min="0" max="1">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Identified Bottlenecks</legend>
+                    <div formArrayName="identifiedBottlenecks">
+                        <div *ngFor="let bottleneck of getBottlenecksArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                            <h4>Bottleneck #{{ i + 1 }}</h4>
+                            <div class="form-group">
+                                <label>Stage ID:</label>
+                                <input type="text" formControlName="stageId" placeholder="e.g., test-stage">
+                            </div>
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <input type="text" formControlName="description" placeholder="Describe the bottleneck">
+                            </div>
+                            <div class="form-group">
+                                <label>Impact Score (0-1):</label>
+                                <input type="number" formControlName="impactScore" step="0.1" min="0" max="1">
+                            </div>
+                            <button *ngIf="getBottlenecksArray().length > 1" type="button" class="remove-btn" (click)="removeBottleneck(i)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" (click)="addBottleneck()">+ Add Bottleneck</button>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Optimization Goals</legend>
+                    <div formArrayName="optimizationGoals">
+                        <div *ngFor="let goal of getOptimizationGoalsArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                            <h4>Goal #{{ i + 1 }}</h4>
+                            <div class="form-group">
+                                <label>Type:</label>
+                                <input type="text" formControlName="type" placeholder="e.g., duration, cost">
+                            </div>
+                            <div class="form-group">
+                                <label>Target Value:</label>
+                                <input type="number" formControlName="targetValue">
+                            </div>
+                            <div class="form-group">
+                                <label>Priority:</label>
+                                <select formControlName="priority">
+                                    <option *ngFor="let option of priorityOptions" [value]="option.value">
+                                        {{ option.label }}
+                                    </option>
+                                </select>
+                            </div>
+                            <button *ngIf="getOptimizationGoalsArray().length > 1" type="button" class="remove-btn" (click)="removeOptimizationGoal(i)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" (click)="addOptimizationGoal()">+ Add Optimization Goal</button>
+                </fieldset>
+
+                <fieldset formGroupName="constraints">
+                    <legend>Optimization Constraints</legend>
+                    <div class="form-group">
+                        <label>Max Budget ($):</label>
+                        <input type="number" formControlName="maxBudget">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Downtime (ISO 8601):</label>
+                        <input type="text" formControlName="maxDowntime" placeholder="e.g., PT1H">
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" [disabled]="optimizePerformanceForm.invalid || isLoading()">
+                        <span *ngIf="!isLoading()">Send Request</span>
+                        <span *ngIf="isLoading()">Sending...</span>
+                    </button>
+                    <button type="button" (click)="clearResponse()">Clear Response</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Predict Issues Form -->
+        <div *ngIf="selectedEndpoint() === 'predict-issues'">
+            <form [formGroup]="predictIssuesForm" (ngSubmit)="onSubmitPredictIssues()" class="request-form">
+                <fieldset>
+                    <legend>Proposed Changes</legend>
+                    <div formArrayName="proposedChanges">
+                        <div *ngFor="let change of getProposedChangesArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                            <h4>Change #{{ i + 1 }}</h4>
+                            <div class="form-group">
+                                <label>Change ID:</label>
+                                <input type="text" formControlName="id" placeholder="e.g., change-001">
+                            </div>
+                            <div class="form-group">
+                                <label>Change Type:</label>
+                                <input type="text" formControlName="type" placeholder="e.g., database">
+                            </div>
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <input type="text" formControlName="description" placeholder="Describe the change">
+                            </div>
+                            <button *ngIf="getProposedChangesArray().length > 1" type="button" class="remove-btn" (click)="removeProposedChange(i)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" (click)="addProposedChange()">+ Add Proposed Change</button>
+                </fieldset>
+
+                <fieldset formGroupName="historicalData">
+                    <legend>Historical Data</legend>
+                    <div formArrayName="runs">
+                        <div *ngFor="let run of getHistoricalRunsArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                            <h4>Run #{{ i + 1 }}</h4>
+                            <div class="form-group">
+                                <label>Run ID:</label>
+                                <input type="text" formControlName="runId" placeholder="e.g., run-001">
+                            </div>
+                            <div class="form-group">
+                                <label>Timestamp:</label>
+                                <input type="datetime-local" formControlName="timestamp" 
+                                       [value]="run.get('timestamp')?.value | date:'yyyy-MM-ddTHH:mm'">
+                            </div>
+                            <div class="form-group checkbox">
+                                <label>
+                                    <input type="checkbox" formControlName="succeeded">
+                                    Succeeded
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Errors (comma-separated):</label>
+                                <input type="text" [value]="run.get('errors')?.value?.join(', ')" 
+                                       (input)="onErrorsInput($event, i)" placeholder="Enter error messages">
+                            </div>
+                            <button *ngIf="getHistoricalRunsArray().length > 12" type="button" class="remove-btn" (click)="removeHistoricalRun(i)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" (click)="addHistoricalRun()">+ Add Historical Run</button>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Prediction Settings</legend>
+                    <div class="form-group">
+                        <label>Prediction Horizon (ISO 8601):</label>
+                        <input type="text" formControlName="predictionHorizon" placeholder="e.g., P7D">
+                    </div>
+                    <div class="form-group">
+                        <label>Confidence Threshold (0-1):</label>
+                        <input type="number" formControlName="confidenceThreshold" step="0.01" min="0" max="1">
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            <input type="checkbox" formControlName="includeMitigations">
+                            Include Mitigations
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" [disabled]="predictIssuesForm.invalid || isLoading()">
+                        <span *ngIf="!isLoading()">Send Request</span>
+                        <span *ngIf="isLoading()">Sending...</span>
+                    </button>
+                    <button type="button" (click)="clearResponse()">Clear Response</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Adapt To Change Form -->
+        <div *ngIf="selectedEndpoint() === 'adapt-to-change'">
+            <form [formGroup]="adaptToChangeForm" (ngSubmit)="onSubmitAdaptToChange()" class="request-form">
+                <fieldset>
+                    <legend>Change Details</legend>
+                    <div class="form-group">
+                        <label>Change Type:</label>
+                        <input type="text" formControlName="changeType" placeholder="e.g., compliance-requirement">
+                    </div>
+                    <div class="form-group">
+                        <label>Adaptation Strategy:</label>
+                        <select formControlName="adaptationStrategy">
+                            <option *ngFor="let option of adaptationStrategyOptions" [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset formGroupName="impactAssessment">
+                    <legend>Impact Assessment</legend>
+                    <div class="form-group">
+                        <label>Impact Score (0-1):</label>
+                        <input type="number" formControlName="impactScore" step="0.01" min="0" max="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Affected Components (comma-separated):</label>
+                        <input type="text" [value]="adaptToChangeForm.get('impactAssessment.affectedComponents')?.value?.join(', ')" 
+                               (input)="onAffectedComponentsInput($event)" placeholder="e.g., security-scanning, dependency-check">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Validation Rules</legend>
+                    <div formArrayName="validationRules">
+                        <div *ngFor="let rule of getValidationRulesArray().controls; let i = index" [formGroupName]="i" class="array-item">
+                            <h4>Rule #{{ i + 1 }}</h4>
+                            <div class="form-group">
+                                <label>Rule ID:</label>
+                                <input type="text" formControlName="ruleId" placeholder="e.g., soc2-compliance">
+                            </div>
+                            <div class="form-group">
+                                <label>Condition:</label>
+                                <input type="text" formControlName="condition" placeholder="e.g., securityScan.passed == true">
+                            </div>
+                            <button *ngIf="getValidationRulesArray().length > 1" type="button" class="remove-btn" (click)="removeValidationRule(i)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" (click)="addValidationRule()">+ Add Validation Rule</button>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" [disabled]="adaptToChangeForm.invalid || isLoading()">
+                        <span *ngIf="!isLoading()">Send Request</span>
+                        <span *ngIf="isLoading()">Sending...</span>
+                    </button>
+                    <button type="button" (click)="clearResponse()">Clear Response</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Response Section -->
+    <div class="response-section">
+        <h2>Response</h2>
+        
+        <div *ngIf="isLoading()" class="loading">
+            <div class="spinner"></div>
+            <p>Sending request...</p>
+        </div>
+
+        <div *ngIf="errorMessage() && !isLoading()" class="error">
+            <h3>Error</h3>
+            <p>{{ errorMessage() }}</p>
+            <div *ngIf="responseData()?.pipelineError" class="error-details">
+                <h4>Recovery Steps:</h4>
+                <ul>
+                    <li *ngFor="let step of responseData()?.pipelineError?.recoverySteps">{{ step }}</li>
+                </ul>
+                <p><strong>Fallback:</strong> {{ responseData()?.pipelineError?.fallbackSuggestion }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="responseData() && !errorMessage() && !isLoading()" class="response-success">
+            <div class="response-header">
+                <h3>Success</h3>
+                <span *ngIf="responseTime()" class="response-time">
+                    Response time: {{ responseTime() | number:'1.0-0' }}ms
+                </span>
+            </div>
+            
+            <div *ngIf="showGeneratePipelineResponse() && responseData()?.pipelineId" class="pipeline-response">
+                <p><strong>Pipeline ID:</strong> {{ responseData().pipelineId }}</p>
+                <p><strong>Stages:</strong> {{ responseData().pipelineDefinition?.stages?.length || 0 }}</p>
+                <div *ngIf="responseData().constraintConflicts?.length" class="conflicts">
+                    <h4>Constraint Conflicts:</h4>
+                    <ul>
+                        <li *ngFor="let conflict of responseData().constraintConflicts">
+                            {{ conflict.constraintA }} vs {{ conflict.constraintB }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div *ngIf="showDiagnoseFailureResponse() && responseData()?.diagnosisId" class="diagnosis-response">
+                <p><strong>Diagnosis ID:</strong> {{ responseData().diagnosisId }}</p>
+                <p><strong>Root Cause:</strong> {{ responseData().rootCause?.summary }}</p>
+                <p><strong>Confidence:</strong> {{ responseData().confidence | percent }}</p>
+                <div *ngIf="responseData().remediationSteps?.length" class="remediation">
+                    <h4>Remediation Steps:</h4>
+                    <ol>
+                        <li *ngFor="let step of responseData().remediationSteps">{{ step.action }}</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div *ngIf="showOptimizePerformanceResponse() && responseData()?.optimizationId" class="optimization-response">
+                <p><strong>Optimization ID:</strong> {{ responseData().optimizationId }}</p>
+                <p><strong>Opportunities Found:</strong> {{ responseData().optimizationOpportunities?.length || 0 }}</p>
+                <p><strong>Strategies Proposed:</strong> {{ responseData().proposedStrategies?.length || 0 }}</p>
+            </div>
+
+            <div *ngIf="showPredictIssuesResponse() && responseData()?.predictionId" class="prediction-response">
+                <p><strong>Prediction ID:</strong> {{ responseData().predictionId }}</p>
+                <p><strong>Predictions:</strong> {{ responseData().predictions?.length || 0 }}</p>
+                <div *ngIf="responseData().predictions?.length" class="predictions">
+                    <h4>Predicted Issues:</h4>
+                    <ul>
+                        <li *ngFor="let prediction of responseData().predictions">
+                            {{ prediction.issue }} ({{ prediction.probability | percent }})
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div *ngIf="showAdaptToChangeResponse() && responseData()?.adaptationId" class="adaptation-response">
+                <p><strong>Adaptation ID:</strong> {{ responseData().adaptationId }}</p>
+                <p><strong>Plan Steps:</strong> {{ responseData().adaptationPlan?.steps?.length || 0 }}</p>
+                <p><strong>Validation Results:</strong> {{ responseData().validationResults?.length || 0 }} passed</p>
+            </div>
+
+            <details class="raw-response">
+                <summary>View Raw Response</summary>
+                <pre>{{ formatJson(responseData()) }}</pre>
+            </details>
+        </div>
+    </div>
+
+    <!-- Footer with API Info -->
+    <div class="footer">
+        <p>
+            <a href="https://github.com/your-repo/pipeline-cookbook" target="_blank" rel="noopener">View on GitHub</a> | 
+            <span>API URL: {{ environment.pipelineCookbookApiUrl }}</span>
+        </p>
+    </div>
+</div>

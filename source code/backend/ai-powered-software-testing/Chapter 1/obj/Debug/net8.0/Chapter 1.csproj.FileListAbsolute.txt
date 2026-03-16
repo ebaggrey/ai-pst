@@ -1,0 +1,63 @@
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.csproj.AssemblyReference.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.GeneratedMSBuildEditorConfig.editorconfig
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.AssemblyInfoInputs.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.AssemblyInfo.cs
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.csproj.CoreCompileInputs.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.MvcApplicationPartsAssemblyInfo.cs
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.MvcApplicationPartsAssemblyInfo.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.sourcelink.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\appsettings.Development.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\appsettings.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.staticwebassets.endpoints.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.exe
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.deps.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.runtimeconfig.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Chapter 1.pdb
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\System.Text.Json.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\scopedcss\bundle\Chapter 1.styles.css
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\staticwebassets.build.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\staticwebassets.development.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.csproj.Up2Date
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\refint\Chapter 1.dll
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.pdb
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\Chapter 1.genruntimeconfig.cache
+C:\repo_book_projects\ai-powered_software_testing_main\ai-powered-software-testing-book\source code\backend\ai-powered-software-testing\Chapter 1\obj\Debug\net8.0\ref\Chapter 1.dll

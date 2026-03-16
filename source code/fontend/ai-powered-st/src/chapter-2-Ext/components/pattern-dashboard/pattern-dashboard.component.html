@@ -1,0 +1,74 @@
+<!-- In pattern-dashboard.component.html, update the form binding -->
+<form [formGroup]="patternForm" (ngSubmit)="establishPattern()" class="pattern-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="area">Pattern Area *</label>
+      <input
+        type="text"
+        id="area"
+        formControlName="area"
+        placeholder="e.g., unit-testing, e2e-testing"
+      >
+      <div *ngIf="patternForm.get('area')?.invalid && patternForm.get('area')?.touched" class="error-message">
+        Area is required (minimum 3 characters)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="consistency">Desired Consistency</label>
+      <select id="consistency" formControlName="desiredConsistency">
+        <option *ngFor="let level of consistencyLevels" [value]="level">
+          {{ level | titlecase }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="automation">Automation Level</label>
+      <select id="automation" formControlName="automationLevel">
+        <option *ngFor="let level of automationLevels" [value]="level">
+          {{ level | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Validation Criteria -->
+  <div class="form-section">
+    <label>Validation Criteria</label>
+    <div formArrayName="validationCriteria">
+      <div *ngFor="let criterion of validationCriteria.controls; let i = index" class="array-item">
+        <input [formControlName]="i" placeholder="Validation criterion">
+        <button type="button" class="btn-icon" (click)="removeValidationCriterion(i)">&times;</button>
+      </div>
+    </div>
+    <button type="button" class="btn-add" (click)="addValidationCriterion()">+ Add Criterion</button>
+  </div>
+
+  <!-- Metadata Section -->
+  <div formGroupName="metadata" class="metadata-section">
+    <h3>Metadata (Optional)</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Team Size</label>
+        <input type="number" formControlName="teamSize" min="1">
+      </div>
+      <div class="form-group">
+        <label>Experience Level</label>
+        <select formControlName="experienceLevel">
+          <option *ngFor="let level of experienceLevels" [value]="level">
+            {{ level | titlecase }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Timeline</label>
+        <input type="text" formControlName="timeline" placeholder="e.g., 2 weeks">
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-primary" [disabled]="patternForm.invalid || isLoading">
+    Establish Pattern
+  </button>
+</form>

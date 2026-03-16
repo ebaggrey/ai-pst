@@ -1,0 +1,2356 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Metrics That Matter API",
+    "description": "API for designing, calculating, predicting, and optimizing testing metrics",
+    "contact": {
+      "name": "Metrics That Matter Team",
+      "email": "support@metricsthatmatter.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Chapter 10"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MetricsThatMatter/design-metrics": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDesignResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics-that-matter/design-metrics": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDesignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDesignResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MetricsThatMatter/calculate-health": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthScoreResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics-that-matter/calculate-health": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthScoreRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthScoreResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MetricsThatMatter/predict-trends": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics-that-matter/predict-trends": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MetricsThatMatter/generate-insights": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics-that-matter/generate-insights": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MetricsThatMatter/optimize-collection": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics-that-matter/optimize-collection": {
+      "post": {
+        "tags": [
+          "MetricsThatMatter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptimizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionableInsight": {
+        "type": "object",
+        "properties": {
+          "insightId": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionabilityScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          },
+          "affectedMetrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendedActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlertStatus": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "nullable": true
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendedAction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BenchmarkComparison": {
+        "type": "object",
+        "properties": {
+          "percentile": {
+            "type": "number",
+            "format": "double"
+          },
+          "gapToAverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "gapToBest": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionPlan": {
+        "type": "object",
+        "properties": {
+          "collectionSteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "frequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibleTeam": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommunicationPlan": {
+        "type": "object",
+        "properties": {
+          "stakeholders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeline": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComponentScore": {
+        "type": "object",
+        "properties": {
+          "componentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContinuousImprovementPlan": {
+        "type": "object",
+        "properties": {
+          "reviewCycles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "feedbackLoops": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContributingFactor": {
+        "type": "object",
+        "properties": {
+          "factor": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrentStateAnalysis": {
+        "type": "object",
+        "properties": {
+          "analysisDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentValues": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "strengths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "weaknesses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataQualityIssue": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "issue": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecisionSupport": {
+        "type": "object",
+        "properties": {
+          "decisionPoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "recommendedActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tradeoffs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DesignedMetric": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "formula": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessObjectives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "targetValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpectedBenefits": {
+        "type": "object",
+        "properties": {
+          "costReduction": {
+            "type": "number",
+            "format": "double"
+          },
+          "efficiencyGain": {
+            "type": "number",
+            "format": "double"
+          },
+          "qualityImprovement": {
+            "type": "number",
+            "format": "double"
+          },
+          "additionalBenefits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthScoreRequest": {
+        "type": "object",
+        "properties": {
+          "metricValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricValue"
+            },
+            "nullable": true
+          },
+          "historicalBaselines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalBaseline"
+            },
+            "nullable": true
+          },
+          "normalizationMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "weightingStrategy": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidenceThreshold": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthScoreResponse": {
+        "type": "object",
+        "properties": {
+          "healthScoreId": {
+            "type": "string",
+            "nullable": true
+          },
+          "overallScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "componentScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentScore"
+            },
+            "nullable": true
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "contributingFactors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContributingFactor"
+            },
+            "nullable": true
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImprovementRecommendation"
+            },
+            "nullable": true
+          },
+          "trendAnalysis": {
+            "$ref": "#/components/schemas/TrendAnalysis"
+          },
+          "benchmarkComparison": {
+            "$ref": "#/components/schemas/BenchmarkComparison"
+          },
+          "alertStatus": {
+            "$ref": "#/components/schemas/AlertStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricalBaseline": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mean": {
+            "type": "number",
+            "format": "double"
+          },
+          "standardDeviation": {
+            "type": "number",
+            "format": "double"
+          },
+          "min": {
+            "type": "number",
+            "format": "double"
+          },
+          "max": {
+            "type": "number",
+            "format": "double"
+          },
+          "sampleSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricalTrend": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metricValues": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "seasonality": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationGuidance": {
+        "type": "object",
+        "properties": {
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "pitfalls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "successFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImplementationPlan": {
+        "type": "object",
+        "properties": {
+          "phases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "timeline": {
+            "type": "string",
+            "nullable": true
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "rollbackSteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImprovementRecommendation": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "format": "double"
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InconsistencyDetails": {
+        "type": "object",
+        "properties": {
+          "inconsistentMetrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "timePeriodIssues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "unitMismatches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightContext": {
+        "type": "object",
+        "properties": {
+          "stakeholders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "businessGoals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "constraints": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "priorityLevel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightImplementationGuidance": {
+        "type": "object",
+        "properties": {
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightMonitoringPlan": {
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "reviewFrequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "successCriteria": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightQuality": {
+        "type": "object",
+        "properties": {
+          "accuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double"
+          },
+          "timeliness": {
+            "type": "number",
+            "format": "double"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightRequest": {
+        "type": "object",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricValue"
+            },
+            "nullable": true
+          },
+          "insightTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "actionabilityThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "context": {
+            "$ref": "#/components/schemas/InsightContext"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsightResponse": {
+        "type": "object",
+        "properties": {
+          "insightId": {
+            "type": "string",
+            "nullable": true
+          },
+          "generatedInsights": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionableInsight"
+            },
+            "nullable": true
+          },
+          "implementationGuidance": {
+            "$ref": "#/components/schemas/InsightImplementationGuidance"
+          },
+          "insightQuality": {
+            "$ref": "#/components/schemas/InsightQuality"
+          },
+          "validationSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationStep"
+            },
+            "nullable": true
+          },
+          "communicationPlan": {
+            "$ref": "#/components/schemas/CommunicationPlan"
+          },
+          "monitoringPlan": {
+            "$ref": "#/components/schemas/InsightMonitoringPlan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterpretationFramework": {
+        "type": "object",
+        "properties": {
+          "interpretationRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "thresholds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThresholdDefinition"
+            },
+            "nullable": true
+          },
+          "outlierHandling": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Intervention": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expectedImpact": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricConsolidation": {
+        "type": "object",
+        "properties": {
+          "sourceMetricIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "targetMetricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "consolidationMethod": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricConstraints": {
+        "type": "object",
+        "properties": {
+          "maxMetrics": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minDataPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requiredDimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowCompositeMetrics": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricDefinition": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "businessValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricDesignRequest": {
+        "type": "object",
+        "properties": {
+          "businessObjectives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "testingActivities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "designPrinciples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/MetricConstraints"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricDesignResponse": {
+        "type": "object",
+        "properties": {
+          "designId": {
+            "type": "string",
+            "nullable": true
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DesignedMetric"
+            },
+            "nullable": true
+          },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricRelationship"
+            },
+            "nullable": true
+          },
+          "collectionPlan": {
+            "$ref": "#/components/schemas/CollectionPlan"
+          },
+          "interpretationFramework": {
+            "$ref": "#/components/schemas/InterpretationFramework"
+          },
+          "validationRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationRule"
+            },
+            "nullable": true
+          },
+          "implementationGuidance": {
+            "$ref": "#/components/schemas/ImplementationGuidance"
+          },
+          "successCriteria": {
+            "$ref": "#/components/schemas/SuccessCriteria"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricDiagnosticData": {
+        "type": "object",
+        "properties": {
+          "ambiguousObjectives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "clarificationQuestions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "inconsistencyDetails": {
+            "$ref": "#/components/schemas/InconsistencyDetails"
+          },
+          "dataQualityIssues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataQualityIssue"
+            },
+            "nullable": true
+          },
+          "patternDetectionChallenges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "dataRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "insightGenerationChallenges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "metricLimitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "conflictingGoals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tradeOffAnalysis": {
+            "$ref": "#/components/schemas/TradeOffAnalysis"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "recoverySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fallbackSuggestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosticData": {
+            "$ref": "#/components/schemas/MetricDiagnosticData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricPrediction": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "lowerBound": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "upperBound": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "trend": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricRelationship": {
+        "type": "object",
+        "properties": {
+          "sourceMetricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetMetricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relationshipType": {
+            "type": "string",
+            "nullable": true
+          },
+          "strength": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricValue": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "metricName": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringRecommendation": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "frequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "threshold": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationMonitoringPlan": {
+        "type": "object",
+        "properties": {
+          "keyIndicators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "reviewFrequency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationRecommendation": {
+        "type": "object",
+        "properties": {
+          "recommendedActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecommendedAction"
+            },
+            "nullable": true
+          },
+          "consolidations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricConsolidation"
+            },
+            "nullable": true
+          },
+          "deprecatedMetrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "newMetrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationRequest": {
+        "type": "object",
+        "properties": {
+          "currentMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDefinition"
+            },
+            "nullable": true
+          },
+          "resourceConstraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceConstraint"
+            },
+            "nullable": true
+          },
+          "optimizationGoals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "preservationRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreservationRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationResponse": {
+        "type": "object",
+        "properties": {
+          "optimizationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDefinition"
+            },
+            "nullable": true
+          },
+          "optimization": {
+            "$ref": "#/components/schemas/OptimizationRecommendation"
+          },
+          "expectedBenefits": {
+            "$ref": "#/components/schemas/ExpectedBenefits"
+          },
+          "implementationPlan": {
+            "$ref": "#/components/schemas/ImplementationPlan"
+          },
+          "preservationValidation": {
+            "$ref": "#/components/schemas/PreservationValidation"
+          },
+          "riskAssessment": {
+            "$ref": "#/components/schemas/OptimizationRiskAssessment"
+          },
+          "monitoringPlan": {
+            "$ref": "#/components/schemas/OptimizationMonitoringPlan"
+          },
+          "continuousImprovement": {
+            "$ref": "#/components/schemas/ContinuousImprovementPlan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptimizationRiskAssessment": {
+        "type": "object",
+        "properties": {
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredictionConfidence": {
+        "type": "object",
+        "properties": {
+          "averageConfidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "metricConfidence": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "confidenceFactors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredictionRequest": {
+        "type": "object",
+        "properties": {
+          "currentMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricValue"
+            },
+            "nullable": true
+          },
+          "historicalTrends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalTrend"
+            },
+            "nullable": true
+          },
+          "predictionHorizon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "confidenceIntervals": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "includeInterventions": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PredictionResponse": {
+        "type": "object",
+        "properties": {
+          "predictionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentState": {
+            "$ref": "#/components/schemas/CurrentStateAnalysis"
+          },
+          "predictions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricPrediction"
+            },
+            "nullable": true
+          },
+          "predictionConfidence": {
+            "$ref": "#/components/schemas/PredictionConfidence"
+          },
+          "interventions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Intervention"
+            },
+            "nullable": true
+          },
+          "riskAssessment": {
+            "$ref": "#/components/schemas/RiskAssessment"
+          },
+          "monitoringRecommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringRecommendation"
+            },
+            "nullable": true
+          },
+          "decisionSupport": {
+            "$ref": "#/components/schemas/DecisionSupport"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreservationRule": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreservationValidation": {
+        "type": "object",
+        "properties": {
+          "isPreserved": {
+            "type": "boolean"
+          },
+          "validatedRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecommendedAction": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          },
+          "costSaving": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceConstraint": {
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "maxAllocation": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "period": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskAssessment": {
+        "type": "object",
+        "properties": {
+          "overallRisk": {
+            "type": "string",
+            "nullable": true
+          },
+          "identifiedRisks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "mitigationStrategies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuccessCriteria": {
+        "type": "object",
+        "properties": {
+          "quantitativeCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "qualitativeCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "reviewPeriod": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThresholdDefinition": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "green": {
+            "type": "number",
+            "format": "double"
+          },
+          "yellow": {
+            "type": "number",
+            "format": "double"
+          },
+          "red": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradeOffAnalysis": {
+        "type": "object",
+        "properties": {
+          "tradeoffs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "impacts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TrendAnalysis": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "rate": {
+            "type": "number",
+            "format": "double"
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationRule": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationStep": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedOutcome": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
